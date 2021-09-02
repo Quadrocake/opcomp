@@ -1,0 +1,73 @@
+{
+    "animethemes": [
+        {
+            "id": 3152,
+            "type": "OP",
+            "sequence": null,
+            "group": null,
+            "slug": "OP",
+            "created_at": "2021-03-27T02:55:30.856241Z",
+            "updated_at": "2021-03-27T02:55:30.908704Z",
+            "deleted_at": null,
+            "anime": {
+                "id": 2002,
+                "name": "Nabari no Ou",
+                "slug": "nabari_no_ou",
+                "year": 2008,
+                "season": "Spring",
+                "synopsis": "Silent, apathetic yet mischievous, 14-year-old Rokujou Miharu is the bearer of the hijutsu, \"Shinrabanshou\", a powerful technique many ninja clans desire to possess to become the ruler of Nabari. Fellow classmate Kouichi and his English teacher Kumohira are both secretly Banten clan ninjas, pledging themselves to protect Miharu from his many attackers. Keeping apathetic, Miharu attempts to reject their invitation to join their ninja \u2018club\u2019 however, after numerous attacks; he finds no choice but to join their group as a means for his survival. Slowly, Miharu takes a step closer to becoming the ruler of Nabari.\n",
+                "created_at": "2021-03-27T00:44:18.772898Z",
+                "updated_at": "2021-03-28T05:42:21.247287Z",
+                "deleted_at": null
+            },
+            "animethemeentries": [
+                {
+                    "id": 3568,
+                    "version": null,
+                    "episodes": "1-25",
+                    "nsfw": false,
+                    "spoiler": false,
+                    "notes": "",
+                    "created_at": "2021-03-27T02:55:30.932503Z",
+                    "updated_at": "2021-03-27T02:55:30.932503Z",
+                    "deleted_at": null,
+                    "videos": [
+                        {
+                            "id": 2265,
+                            "basename": "NabariNoOu-OP1.webm",
+                            "filename": "NabariNoOu-OP1",
+                            "path": "2008/Spring/NabariNoOu-OP1.webm",
+                            "size": 34329707,
+                            "mimetype": "video/webm",
+                            "resolution": 576,
+                            "nc": true,
+                            "subbed": false,
+                            "lyrics": false,
+                            "uncen": false,
+                            "source": "DVD",
+                            "overlap": "None",
+                            "created_at": "2021-03-27T00:27:02.899518Z",
+                            "updated_at": "2021-03-27T00:36:09.015121Z",
+                            "deleted_at": null,
+                            "tags": "NCDVD576",
+                            "link": "https://staging.animethemes.moe/video/NabariNoOu-OP1.webm"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "links": {
+        "first": "https://staging.animethemes.moe/api/animetheme?sort=random&include=anime%2Canimethemeentries.videos&filter%5Bhas%5D=animethemeentries&page%5Bsize%5D=1&page%5Bnumber%5D=1",
+        "last": null,
+        "prev": null,
+        "next": "https://staging.animethemes.moe/api/animetheme?sort=random&include=anime%2Canimethemeentries.videos&filter%5Bhas%5D=animethemeentries&page%5Bsize%5D=1&page%5Bnumber%5D=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "path": "https://staging.animethemes.moe/api/animetheme",
+        "per_page": 1,
+        "to": 1
+    }
+}
