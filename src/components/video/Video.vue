@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <VideoBox v-bind:videoLink="videoLink"/>
-  </div>
-  <div>
-    <VideoControls 
-        v-on:onclickPause="playPauseVid"
-        v-on:onclickRandom="randomOp"
+    <VideoBox id="VideoBox" v-bind:videoLink="videoLink"/>
+    <VideoControls id="VideoControls"
+        @onclickPause="playPauseVid"
+        @onclickRandom="randomOp"
     />
-  </div>
+    <VideoInfo id="Videoinfo" v-if="!jsonLoading"/>
+
 </template>
 
 <script>
 import VideoBox from './VideoBox.vue'
 import VideoControls from './VideoControls.vue'
+import VideoInfo from './VideoInfo.vue'
 
 const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/animetheme?sort=random&include=anime,animethemeentries.videos&filter[has]=animethemeentries&page[size]=1'
 
@@ -20,12 +19,19 @@ export default {
   name: 'Video',
   components: {
     VideoBox,
-    VideoControls
+    VideoControls,
+    VideoInfo
   },
   data() {
     return {
       videoLink: "",
+      videoJson: {},
+      jsonLoaded: false,
+      jsonLoading: false,
     }
+  },
+  mounted() {
+    this.randomOp()
   },
 methods: {
     playPauseVid() {
@@ -37,9 +43,13 @@ methods: {
         }
     },
     randomOp() {
+        this.jsonLoading = true
         fetch(RANDOM_OP_REQUEST)
         .then(response => response.json())
         .then(json => {
+            this.videoJson = json
+            this.jsonLoaded = true
+            this.jsonLoading = false
             const link = json["animethemes"][0]["animethemeentries"][0]["videos"][0]["link"].replace('staging.', '')
             this.updVideoSrc(link)
         })
