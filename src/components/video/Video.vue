@@ -1,5 +1,5 @@
 <template>
-    <VideoBox id="VideoBox" v-bind:videoLink="videoLink"/>
+    <VideoBox id="VideoBox"/>
     <VideoControls id="VideoControls"
         @onclickPause="playPauseVid"
         @onclickRandom="randomOp"
@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      videoLink: "",
       videoJson: {},
       jsonLoaded: false,
       jsonLoading: false,
@@ -50,12 +49,12 @@ methods: {
             this.videoJson = json
             this.jsonLoaded = true
             this.jsonLoading = false
-            const link = json["animethemes"][0]["animethemeentries"][0]["videos"][0]["link"].replace('staging.', '')
-            this.updVideoSrc(link)
+            const url = json["animethemes"][0]["animethemeentries"][0]["videos"][0]["link"]
+            this.updVideoSrc(url)
         })
     },
-    updVideoSrc(link){
-        this.videoLink = link;
+    updVideoSrc(url){
+        this.$store.commit('updateUrl', url);
         document.getElementById("videoBox").load();
     }
   }

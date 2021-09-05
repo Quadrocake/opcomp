@@ -1,13 +1,12 @@
 <template>
     <div>
-        <video id="videoBox" :src="videoLink" controls autoplay="autoplay"></video>
+        <video id="videoBox" :src="this.$store.state.videoUrl" controls autoplay="autoplay"></video>
     </div>
 </template>
 
 <script>
 export default {
   name: "Player",
-  props: ['videoLink'],
   data() {
         return {
             paused: true

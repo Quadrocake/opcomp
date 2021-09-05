@@ -11,7 +11,7 @@
   
   <div v-for="anime in this.animeObjectList" :key="anime.id">
       {{ anime.name }}
-      <div v-for="op in anime.opList" :key="op.id">
+      <div v-for="op in anime.opList" :key="op.id" @click="this.$store.commit('updateUrl', op.opUrl)">
           {{ op.type }} {{ op.opUrl }}
       </div>
   </div>
@@ -34,6 +34,7 @@ export default {
   },
   methods: {
       onclickSearch() {
+          this.animeObjectList = []
           const query = `${this.BASE_SEARCH_URL}q=${this.search}`
           fetch(query)
           .then(response => response.json())

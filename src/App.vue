@@ -4,11 +4,13 @@
 </template>
 
 <script>
+import store from './store'
 import Video from './components/video/Video.vue';
 import Search from './components/search/Search.vue'
 
 export default {
   name: 'App',
+  store: store,
   components: {
     Video,
     Search
