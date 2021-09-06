@@ -1,11 +1,12 @@
 <template>
+  <div>
     <VideoBox id="VideoBox"/>
     <VideoControls id="VideoControls"
         @onclickPause="playPauseVid"
         @onclickRandom="randomOp"
     />
     <VideoInfo id="Videoinfo" v-if="!jsonLoading"/>
-
+  </div>
 </template>
 
 <script>
@@ -54,7 +55,7 @@ methods: {
         })
     },
     updVideoSrc(url){
-        this.$store.commit('updateUrl', url);
+        this.$store.commit('updateUrl', {newUrl: url, sourse: "themes"});
         document.getElementById("videoBox").load();
     }
   }
