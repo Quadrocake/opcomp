@@ -57,7 +57,7 @@ methods: {
     },
     updVideoSrc(url){
         this.$store.commit('updateUrl', {newUrl: url, sourse: "themes"});
-        document.getElementById("videoBox").load();
+        // document.getElementById("videoBox").load();
     }
   }
 }

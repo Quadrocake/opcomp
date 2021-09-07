@@ -7,7 +7,7 @@ const store = createStore({
     ytPlaying: false,
     playerType: "themes",
     userList: [],
-    currentlyPlaying: ""
+    currentlyPlaying: 0
   },
   mutations: {
     updateUrl (state, payload) {
@@ -15,9 +15,9 @@ const store = createStore({
       console.log(payload.sourse)
       if (payload.sourse == "themes") {
         console.log(payload.newUrl)
-        
-        state.videoUrl = payload.newUrl.replace('staging.', '')
         state.ytPlaying = false
+        state.videoUrl = payload.newUrl.replace('staging.', '')
+        
         // document.getElementById("videoBox").load();
       }
       else if (payload.sourse == "yt") {
@@ -28,7 +28,7 @@ const store = createStore({
         console.log(payload.newUrl)
         // document.getElementById("ytBox").load();
       }
-      if(payload.index) {
+      if(payload.index !== undefined) {
         state.currentlyPlaying = payload.index
       }
     },
