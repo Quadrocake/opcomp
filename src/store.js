@@ -15,22 +15,35 @@ const store = createStore({
       console.log(payload.sourse)
       if (payload.sourse == "themes") {
         console.log(payload.newUrl)
-        state.ytPlaying = false
+        
         state.videoUrl = payload.newUrl.replace('staging.', '')
+        state.ytPlaying = false
         // document.getElementById("videoBox").load();
       }
       else if (payload.sourse == "yt") {
-        state.ytPlaying = true
+        
         state.ytId = payload.newUrl
+        state.ytPlaying = true
         console.log(state.ytId)
         console.log(payload.newUrl)
         // document.getElementById("ytBox").load();
       }
-      state.currentlyPlaying = payload.index
+      if(payload.index) {
+        state.currentlyPlaying = payload.index
+      }
     },
     playNext (state) {
       state.currentlyPlaying = ++state.currentlyPlaying % state.userList.length
-      state.videoUrl = state.userList[state.currentlyPlaying].opUrl.replace('staging.', '')
+      console.log(state.currentlyPlaying)
+      if (state.userList[state.currentlyPlaying].sourse == "themes") {
+        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
+        // state.videoUrl = state.userList[state.currentlyPlaying].opUrl.replace('staging.', '')
+        console.log(state.userList[state.currentlyPlaying])
+      }
+      else if (state.userList[state.currentlyPlaying].sourse == "yt") {
+        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
+        console.log(state.userList[state.currentlyPlaying].opUrl)
+      }
     },
     addListEntry (state, entry) {
       state.userList.push(entry)
@@ -38,9 +51,10 @@ const store = createStore({
     removeListEntry (state, index) {
       state.userList.splice(index, 1)
     },
-    setCurrentlyPlaying (state, index) {
-      state.currentlyPlaying = index
-    }
+    resetCurrentlyPlaying (state) {
+      state.currentlyPlaying = ""
+    },
+
     }
   })
 

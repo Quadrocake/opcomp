@@ -51,6 +51,7 @@ methods: {
             this.jsonLoaded = true
             this.jsonLoading = false
             const url = json["animethemes"][0]["animethemeentries"][0]["videos"][0]["link"]
+            this.$store.commit('resetCurrentlyPlaying')
             this.updVideoSrc(url)
         })
     },
