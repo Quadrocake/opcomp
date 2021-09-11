@@ -1,20 +1,20 @@
 <template>
-  <!-- <div>
+  <div>
     <div>
       <YoutubeVue3
       v-if="this.$store.state.ytPlaying && this.$store.state.ytId"
       @ended="playNext()"
-      ref="youtube" :videoid="this.$store.state.ytId" width="750" height="500"/>
+      ref="youtube" :videoid="this.$store.state.ytId" :width="750" :height="500"/>
     </div>
     <div>
-      <ThemesPlayer 
+      <video id="videoBox" controls autoplay="autoplay"
         v-if='(!this.$store.state.ytPlaying) && (this.$store.state.videoUrl !== "")'
-        :sourse="this.$store.state.videoUrl"
-        @onendedNext="playNext()"
-      />
+        :src="this.$store.state.videoUrl"
+        @ended="playNext()"
+      ></video>
     </div>
-  </div> -->
-  <div>
+  </div>
+  <!-- <div>
     <video id="videoBox" :src="this.$store.state.videoUrl" controls autoplay="autoplay"
     @ended="playNext()"
     ></video>
@@ -22,7 +22,7 @@
     ref="youtube" :videoid="this.$store.state.ytId" :width="750" :height="500"
     @ended="playNext()"
     />
-  </div>
+  </div> -->
 </template>
 
 <script>

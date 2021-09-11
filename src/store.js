@@ -21,9 +21,8 @@ const store = createStore({
         // document.getElementById("videoBox").load();
       }
       else if (payload.sourse == "yt") {
-        
-        state.ytId = payload.newUrl
         state.ytPlaying = true
+        state.ytId = payload.newUrl
         console.log(state.ytId)
         console.log(payload.newUrl)
         // document.getElementById("ytBox").load();
