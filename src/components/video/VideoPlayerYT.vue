@@ -1,5 +1,7 @@
 <template>
-  <div ref="player" id="youtube-player"></div>
+  <div>
+    <div ref="player" id="youtube-player"></div>
+  </div>
 </template>
 
 <script>
