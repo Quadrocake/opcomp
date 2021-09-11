@@ -6,6 +6,7 @@
         @onclickRandom="randomOp"
     />
     <VideoInfo id="Videoinfo" v-if="!jsonLoading"/>
+    <SocketTest />
   </div>
 </template>
 
@@ -13,6 +14,8 @@
 import VideoBox from './VideoBox.vue'
 import VideoControls from './VideoControls.vue'
 import VideoInfo from './VideoInfo.vue'
+// TEST
+import SocketTest from '../list/SocketTest.vue'
 
 const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/animetheme?sort=random&include=anime,animethemeentries.videos&filter[has]=animethemeentries&page[size]=1'
 
@@ -21,7 +24,8 @@ export default {
   components: {
     VideoBox,
     VideoControls,
-    VideoInfo
+    VideoInfo,
+    SocketTest
   },
   data() {
     return {

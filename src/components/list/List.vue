@@ -29,13 +29,16 @@
 </template>
 
 <script>
+import socket from '../../socket.js'
+
 export default {
   name: "List",
   data() {
     return {
       listName: "",
       compList: {},
-      fetchedList: []
+      fetchedList: [],
+      socket: null
     }
   },
   methods: {
@@ -65,6 +68,13 @@ export default {
         method: 'delete'
       })
     }
+  },
+  created() {
+    this.socket = socket
+
+    socket.on("db update", () => {
+    this.onclickGetComp()
+  })
   }
 }
 </script>
