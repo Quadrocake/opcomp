@@ -1,8 +1,8 @@
 <template>
   <div id="themes-player">
-      <video id="videoBox" :src="sourse" controls autoplay="autoplay"
-      @ended="$emit('onendedNext')"
-      ></video>
+    <video id="videoBox" :src="sourse" controls autoplay="autoplay"
+    @ended="$emit('onendedNext')"
+    ></video>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
   name: "VideoPlayerThemes",
   props: {
-      sourse: String
+    sourse: String
   }
 }
 </script>

@@ -11,11 +11,6 @@
           <button @click="onclickDeleteList(list)">DELETE</button>
         </li>
       </ul>
-      <!-- <ul>
-        <li v-for="(op, index) in this.fetchedList" :key="index">
-          <span @click="this.$store.commit('updateList', list)">{{ list }}</span>
-        </li>
-      </ul> -->
     </div>
     <div>
       <ul>
@@ -71,7 +66,6 @@ export default {
   },
   created() {
     this.socket = socket
-
     socket.on("db update", () => {
     this.onclickGetComp()
   })

@@ -1,21 +1,17 @@
 <template>
 <div>
   <span class="searchBox">
-      <input type="text" v-model="search" placeholder="search...">
+    <input type="text" v-model="search" placeholder="search...">
   </span>
   <span class="searchButton">
-      <button @click="onclickSearch">Search</button>
+    <button @click="onclickSearch">Search</button>
   </span>
-  
-  <!-- <div class="resultBoxes" v-for="anime in response['search']" :key="anime.value">{{ anime }}</div> -->
-  <!-- <div class="resultNames" v-for="anime in this.animeObjectList" :key="anime.name">{{ anime.name }}</div> -->
-  
   <div v-for="anime in this.animeObjectList" :key="anime.id">
-      {{ anime.name }}
-      <div v-for="op in anime.opList" :key="op.id">
-          <span @click="this.$store.commit('updateUrl', {newUrl: op.opUrl, sourse: op.sourse})">{{ op.type }} {{ op.title }} {{ op.opUrl }}</span> 
-          <span @click="this.$store.commit('addListEntry', op)">Add to list</span>
-      </div>
+    {{ anime.name }}
+    <div v-for="op in anime.opList" :key="op.id">
+      <span @click="this.$store.commit('updateUrl', {newUrl: op.opUrl, sourse: op.sourse})">{{ op.type }} {{ op.title }} {{ op.opUrl }}</span> 
+      <span @click="this.$store.commit('addListEntry', op)">Add to list</span>
+    </div>
   </div>
 </div>
 </template>
@@ -32,31 +28,31 @@ export default {
       }
   },
   methods: {
-      onclickSearch() {
-          this.animeObjectList = []
-          const query = `${this.BASE_SEARCH_URL}q=${this.search}`
-          fetch(query)
-          .then(response => response.json())
-          .then(json => {
-          this.response = json
-          
-          for (const item in json['search']['anime']) {
-            const animeObj = {}
-            const opList = []
-            animeObj['name'] = json['search']['anime'][item]['name']
-            for (const item2 in json['search']['anime'][item]['animethemes']) {
-                const opEntry = {}
-                animeObj['opList'] = opList
-                opEntry['sourse'] = "themes"
-                opEntry['type'] = json['search']['anime'][item]['animethemes'][item2]['type']
-                opEntry['title'] = json['search']['anime'][item]['animethemes'][item2]['song']['title']
-                opEntry['opUrl'] = json['search']['anime'][item]['animethemes'][item2]['animethemeentries'][0]['videos'][0]['link']
-                opList.push(opEntry)
-            }
-            this.animeObjectList.push(animeObj)
-          }    
-          })
-      }
+    onclickSearch() {
+      this.animeObjectList = []
+      const query = `${this.BASE_SEARCH_URL}q=${this.search}`
+      fetch(query)
+      .then(response => response.json())
+      .then(json => {
+      this.response = json
+    
+      for (const item in json['search']['anime']) {
+      const animeObj = {}
+      const opList = []
+      animeObj['name'] = json['search']['anime'][item]['name']
+        for (const item2 in json['search']['anime'][item]['animethemes']) {
+          const opEntry = {}
+          animeObj['opList'] = opList
+          opEntry['sourse'] = "themes"
+          opEntry['type'] = json['search']['anime'][item]['animethemes'][item2]['type']
+          opEntry['title'] = json['search']['anime'][item]['animethemes'][item2]['song']['title']
+          opEntry['opUrl'] = json['search']['anime'][item]['animethemes'][item2]['animethemeentries'][0]['videos'][0]['link']
+          opList.push(opEntry)
+        }
+      this.animeObjectList.push(animeObj)
+      }    
+      })
+    }
   }
 }
 </script>

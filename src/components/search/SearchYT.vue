@@ -12,40 +12,39 @@
       <span @click="this.$store.commit('addListEntry', item)">Add to list</span>
   </div>
 </div>
-
 </template>
 
 <script>
 export default {
   name: "SearchYT",
   data() {
-      return {
-          searchyt: "",
-          BASE_SEARCH_URL: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=AIzaSyDxgb25TunfttfRHSG1zhOGxTjNh-vvFEA&",
-          response: {},
-          ytObjectList: []
-      }
+    return {
+      searchyt: "",
+      BASE_SEARCH_URL: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=AIzaSyDxgb25TunfttfRHSG1zhOGxTjNh-vvFEA&",
+      response: {},
+      ytObjectList: []
+    }
   },
   methods: {
-      onclickSearchYT () {
-          this.ytObjectList = []
-          const query = `${this.BASE_SEARCH_URL}q=${this.searchyt}`
-          fetch(query)
-          .then(response => response.json())
-          .then(json => {
-          this.response = json
+    onclickSearchYT () {
+      this.ytObjectList = []
+      const query = `${this.BASE_SEARCH_URL}q=${this.searchyt}`
+      fetch(query)
+      .then(response => response.json())
+      .then(json => {
+      this.response = json
 
-          for (const item in json['items']) {
-            const animeObj = {}
-            animeObj['sourse'] = "yt"
-            animeObj['opUrl'] = json['items'][item]['id']['videoId']
-            animeObj['title'] = json['items'][item]['snippet']['title']
-            animeObj['thumbnail'] = json['items'][item]['snippet']['thumbnails']['default']['url']
+      for (const item in json['items']) {
+        const animeObj = {}
+        animeObj['sourse'] = "yt"
+        animeObj['opUrl'] = json['items'][item]['id']['videoId']
+        animeObj['title'] = json['items'][item]['snippet']['title']
+        animeObj['thumbnail'] = json['items'][item]['snippet']['thumbnails']['default']['url']
 
-            this.ytObjectList.push(animeObj)
-          }
-          })
+        this.ytObjectList.push(animeObj)
       }
+      })
+    }
   }
 }
 </script>
