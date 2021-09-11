@@ -45,8 +45,12 @@ const store = createStore({
         console.log(state.userList[state.currentlyPlaying].opUrl)
       }
     },
+    updateList (state, list) {
+      state.userList = list
+    },
     addListEntry (state, entry) {
       state.userList.push(entry)
+      console.log(JSON.stringify(state.userList))
     },
     removeListEntry (state, index) {
       state.userList.splice(index, 1)
