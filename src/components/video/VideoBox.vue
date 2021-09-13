@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="videocontainer">
     <div>
       <YoutubeVue3
       v-if="this.$store.state.ytPlaying && this.$store.state.ytId"
       @ended="playNext()"
-      ref="youtube" :videoid="this.$store.state.ytId" :width="750" :height="500"/>
+      ref="youtube" :videoid="this.$store.state.ytId" :width="900" :height="600"/>
     </div>
     <div>
       <video id="videoBox" controls autoplay="autoplay"
@@ -43,6 +43,6 @@ export default {
 
 <style>
   #videoBox {
-    height: 500px !important;
+    max-height: 600px;
   }
 </style>

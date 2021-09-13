@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <Video /><List />
-    <Search />
-    <SearchYT />
+  <div class="wrapper">
+    <List/>
+    <Video class="video"/>
+    <Search class="search"/>
+    <SearchYT class="search"/>
   </div>
 </template>
 
@@ -26,11 +27,32 @@ export default {
 </script>
 
 <style>
-#app {
-  text-align: center;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+body {
+  background-color: #353839;
+}
+.wrapper {
+  display: grid;
+  position: absolute;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: 650px 1fr;
+
+  font-family: 'Urbanist', sans-serif;
+  color: gray;
+}
+button {
+  border: none;
+  background: #353839;
+  cursor: pointer;
+  font-family: 'Urbanist', sans-serif;
+  color: Gray;
+}
+.video {
+  grid-row: 1;
+  grid-column: 2;
+  margin: 10px;
+}
+.search {
+  grid-row: 2;
 }
 </style>

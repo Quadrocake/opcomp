@@ -57,7 +57,9 @@ const store = createStore({
     resetCurrentlyPlaying (state) {
       state.currentlyPlaying = ""
     },
-
+    clearUserList (state) {
+      state.userList = []
+    }
     }
   })
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="videowrapper">
     <VideoBox id="VideoBox"/>
     <VideoControls id="VideoControls"
         @onclickPause="playPauseVid"
@@ -61,3 +61,9 @@ export default {
   }
 }
 </script>
+<style>
+#videowrapper {
+  text-align: center;
+  height: 600px;
+}
+</style>

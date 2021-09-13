@@ -7,10 +7,10 @@
     <button @click="onclickSearch">Search</button>
   </span>
   <div v-for="anime in this.animeObjectList" :key="anime.id">
-    {{ anime.name }}
+    <h4>{{ anime.name }}</h4>
     <div v-for="op in anime.opList" :key="op.id">
-      <span @click="this.$store.commit('updateUrl', {newUrl: op.opUrl, sourse: op.sourse})">{{ op.type }} {{ op.title }} {{ op.opUrl }}</span> 
-      <span @click="this.$store.commit('addListEntry', op)">Add to list</span>
+      <span @click="this.$store.commit('updateUrl', {newUrl: op.opUrl, sourse: op.sourse})">{{ op.type }} {{ op.title }}</span> 
+      <button @click="this.$store.commit('addListEntry', op)">+</button>
     </div>
   </div>
 </div>

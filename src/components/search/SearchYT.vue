@@ -6,10 +6,15 @@
   <span class="searchButton">
       <button @click="onclickSearchYT">Search</button>
   </span>
-  <div v-for="item in this.ytObjectList" :key="item.opUrl">
-      <img :src="item.thumbnail" alt="no img">
-      <span @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse})">{{ item.title }}</span> 
-      <span @click="this.$store.commit('addListEntry', item)">Add to list</span>
+  <div class="searchContainer" v-for="item in this.ytObjectList" :key="item.opUrl"
+  @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse})">
+      <img class="searchRes" :src="item.thumbnail" alt="no img">
+      <p
+      @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse})">{{ item.title }}
+      </p> 
+      <button
+      @click="this.$store.commit('addListEntry', item)">Add to list
+      </button>
   </div>
 </div>
 </template>
@@ -50,5 +55,10 @@ export default {
 </script>
 
 <style>
-
+.searchRes {
+  float: left;
+}
+.searchContainer {
+  overflow: auto
+}
 </style>
