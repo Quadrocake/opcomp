@@ -30,16 +30,33 @@ export default {
     }
   },
   methods: {
-    playNext() {
+    playNext(next) {
       console.log(this.$store.state.currentlyPlaying)
       if (this.$store.state.currentlyPlaying !== "") {
-        console.log("play next")
-        this.$store.commit('playNext')
+        if (next) {
+          console.log("play next")
+          this.$store.commit('playNext')
+        }
+        else if (!next) {
+          console.log("play prev")
+          this.$store.commit('playPrev')
+        }
       }
       else {
         this.$store.commit('randomOp')
       }
     },
+    hotkeys(e) {
+    if (e.code == 'ArrowRight') {
+      this.playNext(true)
+    } 
+    else if (e.code == 'ArrowLeft') {
+      this.playNext(false)
+    }
+    }
+  },
+  mounted() {
+    document.addEventListener('keyup', this.hotkeys, false);
   }
 }
 </script>

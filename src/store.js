@@ -34,15 +34,18 @@ const store = createStore({
     },
     playNext (state) {
       state.currentlyPlaying = ++state.currentlyPlaying % state.userList.length
-      console.log(state.currentlyPlaying)
+      this.commit('newVideo')
+    },
+    playPrev (state) {
+      state.currentlyPlaying = Math.abs(--state.currentlyPlaying % state.userList.length)
+      this.commit('newVideo')
+    },
+    newVideo(state) {
       if (state.userList[state.currentlyPlaying].sourse == "themes") {
         this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
-        // state.videoUrl = state.userList[state.currentlyPlaying].opUrl.replace('staging.', '')
-        console.log(state.userList[state.currentlyPlaying])
       }
       else if (state.userList[state.currentlyPlaying].sourse == "yt") {
         this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
-        console.log(state.userList[state.currentlyPlaying].opUrl)
       }
     },
     updateList (state, list) {
