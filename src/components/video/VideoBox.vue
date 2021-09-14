@@ -36,6 +36,9 @@ export default {
         console.log("play next")
         this.$store.commit('playNext')
       }
+      else {
+        this.$store.commit('randomOp')
+      }
     },
   }
 }
@@ -45,6 +48,6 @@ export default {
   #videoBox {
     max-width: 90%;
     max-height: 70vh;
-    min-height: 50vh;
+    min-height: 60vh;
   }
 </style>
