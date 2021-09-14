@@ -44,5 +44,7 @@ export default {
 <style>
   #videoBox {
     max-width: 90%;
+    max-height: 70vh;
+    min-height: 50vh;
   }
 </style>

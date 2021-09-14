@@ -14,7 +14,9 @@
     </ul>
   </div>
   <div class="oplist">
-    <ul class="opul">
+    <button @click="this.$store.commit('shuffleList')">Random</button>
+    <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
+    <ul v-show="!this.oplistHidden" class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
         <span class="index">{{ index + 1}}</span>
         <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse})">{{ entry.title }}</span>
@@ -34,7 +36,8 @@ export default {
       listName: "",
       compList: {},
       fetchedList: [],
-      socket: null
+      socket: null,
+      oplistHidden: false
     }
   },
   methods: {
@@ -125,6 +128,7 @@ li {
 }
 .complist button, .oplist button {
   background: #2a2a2b;
+  height: 30px;
 }
 button:hover {
   background: lightgray;
@@ -151,5 +155,8 @@ li:hover {
 .index {
   width: 20px;
   color: #353839;
+}
+input {
+  height: 25px;
 }
 </style>

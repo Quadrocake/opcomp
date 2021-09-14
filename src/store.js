@@ -60,6 +60,15 @@ const store = createStore({
     },
     clearUserList (state) {
       state.userList = []
+    },
+    shuffleList (state) {
+      let currentIndex = state.userList.length, randomIndex
+      while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--
+
+        [state.userList[currentIndex], state.userList[randomIndex]] = [state.userList[randomIndex], state.userList[currentIndex]]
+      }
     }
     }
   })
