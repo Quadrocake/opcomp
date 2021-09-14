@@ -35,7 +35,7 @@ body {
   display: grid;
   /* grid-template-columns: 350px 1fr 350px; */
   grid-template-columns: 20% 1fr 20%;
-  grid-template-rows: 650px 1fr;
+  grid-template-rows: 90vh 1fr;
 
   font-family: 'Urbanist', sans-serif;
   color: gray;

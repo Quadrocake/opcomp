@@ -128,7 +128,6 @@ li {
 }
 .complist button, .oplist button {
   background: #2a2a2b;
-  height: 30px;
 }
 button:hover {
   background: lightgray;
@@ -140,7 +139,7 @@ button:hover {
   width: 100%;
   cursor: pointer;
   
-  margin: 5px;
+  margin-left: 5px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
