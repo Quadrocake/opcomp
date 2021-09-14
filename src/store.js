@@ -7,7 +7,8 @@ const store = createStore({
     ytPlaying: false,
     playerType: "themes",
     userList: [],
-    currentlyPlaying: 0
+    currentlyPlaying: 0,
+    appUrl: "op.bots.confa.pp.ua"
   },
   mutations: {
     updateUrl (state, payload) {
