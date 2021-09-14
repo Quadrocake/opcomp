@@ -29,12 +29,11 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
 body {
-  background-color: #353839;
+  background-color: #2a2a2b;
 }
 .wrapper {
   display: grid;
-  position: absolute;
-  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-columns: 350px 1fr 350px;
   grid-template-rows: 650px 1fr;
 
   font-family: 'Urbanist', sans-serif;
@@ -47,10 +46,15 @@ button {
   font-family: 'Urbanist', sans-serif;
   color: Gray;
 }
+input {
+  border: none;
+  background: #353839;
+  color: Gray;
+}
 .video {
   grid-row: 1;
   grid-column: 2;
-  margin: 10px;
+  /* margin: 10px; */
 }
 .search {
   grid-row: 2;

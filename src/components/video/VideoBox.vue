@@ -43,6 +43,6 @@ export default {
 
 <style>
   #videoBox {
-    max-height: 600px;
+    max-width: 90%;
   }
 </style>

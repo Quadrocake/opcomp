@@ -1,21 +1,24 @@
 <template>
   <div class="complist">
-    <input type="text" v-model="listName" placeholder="List name">
-    <button @click="onclickNewList">New</button>
-    <button @click="onclickUploadList">Upload</button>
-    <button @click="onclickGetComp">Refresh</button>
+    <div>
+      <input type="text" v-model="listName" placeholder="List name">
+      <button @click="onclickNewList">New</button>
+      <button @click="onclickUploadList">Upload</button>
+      <button @click="onclickGetComp">Refresh</button>
+    </div>
     <ul>
       <li class="compli" v-for="(list, index) in this.compList['data']" :key="index">
         <span class="compspan" @click="onclickGetList(list)">{{ list }}</span>
-        <button @click="onclickDeleteList(list)">DELETE</button>
+        <button class="dangerbutton" @click="onclickDeleteList(list)">DELETE</button>
       </li>
     </ul>
   </div>
   <div class="oplist">
     <ul class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
+        <span class="index">{{ index + 1}}</span>
         <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse})">{{ entry.title }}</span>
-        <button @click="this.$store.commit('removeListEntry', index)">Remove</button>
+        <button class="dangerbutton" @click="this.$store.commit('removeListEntry', index)">Remove</button>
       </li>
     </ul>
 </div>
@@ -82,9 +85,13 @@ export default {
 <style>
 .complist {
   grid-column: 1;
+  display: flex;
+  flex-direction: column;
 }
 .oplist {
   grid-column: 3;
+  display: flex;
+  flex-direction: column;
 }
 ul {
   list-style-type: none;
@@ -92,47 +99,57 @@ ul {
   overflow-y: auto;
   
   /* row-gap: 20px; */
-  display: grid;
-  /* flex-direction: column; */
-  width: 350px;
-  /* flex-wrap: wrap; */
-    height: 570px;
-}
+  /* display: grid;
+  flex-direction: column; */
+  width: 100%;
+  flex: 1 1 0px;
 
+  /* flex-wrap: wrap; */
+  /* height: 570px; */
+  scrollbar-width: none;
+}
+ul::-webkit-scrollbar {
+  display: none;
+}
 li {
   display: flex;
-  width: 300px;
+  width: 100%;
+  min-width: 0;
 
   border-style: solid none;
-  /* border-left-style: solid; */
-  /* border-right-style: none; */
-  border-width: 1px 1px 1px 5px;
-  border-color: darkgray;
-  background: #353839;
-  margin-bottom: -1px;
-  min-height: 40px;
-}
-/* .complist button, .oplist button {
-  border-style: none solid none none;
   border-width: 1px;
-} */
+  border-color: #353839;
+  background: #2a2a2b;
+  margin-bottom: -1px;
+  height: 40px;
+}
+.complist button, .oplist button {
+  background: #2a2a2b;
+}
 button:hover {
   background: lightgray;
+}
+.dangerbutton:hover {
+  background: lightcoral !important;
 }
 .opspan, .compspan {
   width: 100%;
   cursor: pointer;
   
-  margin-top: 10px;
+  margin: 5px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 
-  /* display: flex;
+  display: flex;
   align-items: center;
-  vertical-align: middle; */
+  vertical-align: middle;
 }
-.opspan:hover, .compspan:hover {
+li:hover {
   background: lightgray;
+}
+.index {
+  width: 20px;
+  color: #353839;
 }
 </style>
