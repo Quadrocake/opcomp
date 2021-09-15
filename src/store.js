@@ -38,10 +38,10 @@ const store = createStore({
     },
     newVideo(state) {
       if (state.userList[state.currentlyPlaying].sourse == "themes") {
-        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
+        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse, opJson: state.userList[state.currentlyPlaying]})
       }
       else if (state.userList[state.currentlyPlaying].sourse == "yt") {
-        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse})
+        this.commit("updateUrl", {newUrl: state.userList[state.currentlyPlaying].opUrl, sourse: state.userList[state.currentlyPlaying].sourse, opJson: state.userList[state.currentlyPlaying]})
       }
     },
     updateList (state, list) {

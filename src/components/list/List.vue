@@ -14,8 +14,11 @@
     </ul>
   </div>
   <div class="oplist">
-    <button @click="this.$store.commit('shuffleList')">Random</button>
-    <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
+    <span>
+      <span id="listName">{{ this.listName }}</span>
+      <button @click="this.$store.commit('shuffleList')">Random</button>
+      <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
+    </span>
     <ul v-show="!this.oplistHidden" class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
         <span class="index">{{ index + 1}}</span>
@@ -124,10 +127,12 @@ li {
   border-color: rgb(99, 53, 53);
   background: #2a2a2b;
   margin-bottom: -1px;
-  height: 40px;
+  height: 2em;
 }
 .complist button, .oplist button {
   background: #2a2a2b;
+  height: 100%;
+  /* max-height: 2em; */
 }
 button:hover {
   background: lightgray;
@@ -152,10 +157,18 @@ li:hover {
   background: lightgray;
 }
 .index {
-  width: 20px;
+  width: calc(1.2em + 1vmin);
   color: #353839;
+  font-size: calc(0.40em + 1vmin);
 }
 input {
-  height: 25px;
+  height: 1.5em;
+}
+#listName {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(99, 53, 53);
+  border-radius: 1em;
+  padding: 0.10em 1em;
 }
 </style>

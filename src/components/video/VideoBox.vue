@@ -30,14 +30,14 @@ export default {
     }
   },
   methods: {
-    playNext(next) {
+    playNext(prev) {
       console.log(this.$store.state.currentlyPlaying)
       if (this.$store.state.currentlyPlaying !== "") {
-        if (next) {
+        if (!prev) {
           console.log("play next")
           this.$store.commit('playNext')
         }
-        else if (!next) {
+        else if (prev) {
           console.log("play prev")
           this.$store.commit('playPrev')
         }
@@ -65,8 +65,7 @@ export default {
 
 <style>
   #videoBox {
-    max-width: 90%;
-    max-height: 70vh;
-    min-height: 60vh;
+    max-width: 95%;
+    height: 70vh;
   }
 </style>
