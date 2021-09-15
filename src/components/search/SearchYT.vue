@@ -6,11 +6,10 @@
   <span class="searchButton">
       <button @click="onclickSearchYT">Search</button>
   </span>
-  <div class="searchContainer" v-for="item in this.ytObjectList" :key="item.opUrl"
-  @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse})">
+  <div class="searchContainer" v-for="item in this.ytObjectList" :key="item.opUrl">
       <img class="searchRes" :src="item.thumbnail" alt="no img">
       <p
-      @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse})">{{ item.title }}
+      @click="this.$store.commit('updateUrl', {newUrl: item.opUrl, sourse: item.sourse, opJson: item})">{{ item.title }}
       </p> 
       <button
       @click="this.$store.commit('addListEntry', item)">Add to list

@@ -1,7 +1,8 @@
 <template>
-  <div v-if="$parent.jsonLoaded">
-    <p class="videoInfoLine">{{ $parent.videoJson["animethemes"][0]["anime"]["name"]}}</p> &nbsp;
-    <p class="videoInfoLine">{{ $parent.videoJson["animethemes"][0]["type"]}}</p>
+  <div v-if="this.$store.state.currentJson">
+    <p class="videoInfoLine">{{ this.$store.state.currentJson['anime'] }}</p> &nbsp;
+    <p class="videoInfoLine" v-if="this.$store.state.currentJson['type']">{{ this.$store.state.currentJson['type'] }}</p> &nbsp;
+    <p class="videoInfoLine">{{ this.$store.state.currentJson['title'] }}</p> 
   </div>
 </template>
 

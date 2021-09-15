@@ -47,12 +47,14 @@ export default {
       }
     },
     hotkeys(e) {
-    if (e.code == 'ArrowRight') {
-      this.playNext(true)
-    } 
-    else if (e.code == 'ArrowLeft') {
-      this.playNext(false)
-    }
+      if (e.target.nodeName !== 'INPUT') {
+        if (e.code == 'ArrowRight') {
+        this.playNext(true)
+        } 
+        else if (e.code == 'ArrowLeft') {
+          this.playNext(false)
+        }
+      }
     }
   },
   mounted() {

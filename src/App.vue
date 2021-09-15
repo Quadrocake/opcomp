@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
   background-color: #2a2a2b;
 }
@@ -37,7 +37,7 @@ body {
   grid-template-columns: 20% 1fr 20%;
   grid-template-rows: 90vh 1fr;
 
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: gray;
 }
 button {

@@ -19,7 +19,7 @@
     <ul v-show="!this.oplistHidden" class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
         <span class="index">{{ index + 1}}</span>
-        <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse})">{{ entry.title }}</span>
+        <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">{{ entry.title }}</span>
         <button class="dangerbutton" @click="this.$store.commit('removeListEntry', index)">Remove</button>
       </li>
     </ul>
@@ -121,7 +121,7 @@ li {
 
   border-style: solid none;
   border-width: 1px;
-  border-color: #353839;
+  border-color: rgb(99, 53, 53);
   background: #2a2a2b;
   margin-bottom: -1px;
   height: 40px;
