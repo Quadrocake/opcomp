@@ -15,7 +15,7 @@
   </div>
   <div class="oplist">
     <span>
-      <span id="listName">{{ this.listName }}</span>
+      <span v-if="this.listName" id="listName">{{ this.listName }}</span>
       <button @click="this.$store.commit('shuffleList')">Random</button>
       <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
     </span>

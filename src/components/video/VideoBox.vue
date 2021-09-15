@@ -30,29 +30,44 @@ export default {
     }
   },
   methods: {
-    playNext(prev) {
-      console.log(this.$store.state.currentlyPlaying)
+    // playNext(prev) {
+    //   console.log(this.$store.state.currentlyPlaying)
+    //   if (this.$store.state.currentlyPlaying !== "") {
+    //     if (!prev) {
+    //       console.log("play next")
+    //       this.$store.commit('playNext')
+    //     }
+    //     else if (prev) {
+    //       console.log("play prev")
+    //       this.$store.commit('playPrev')
+    //     }
+    //   }
+    //   else {
+    //     this.$store.commit('randomOp')
+    //   }
+    // },
+    playNext () {
       if (this.$store.state.currentlyPlaying !== "") {
-        if (!prev) {
-          console.log("play next")
-          this.$store.commit('playNext')
-        }
-        else if (prev) {
-          console.log("play prev")
-          this.$store.commit('playPrev')
-        }
+        console.log("play next")
+        this.$store.commit('playNext')
       }
       else {
         this.$store.commit('randomOp')
       }
     },
+    playPrev () {
+      if (this.$store.state.currentlyPlaying !== "") {
+        console.log("play prev")
+        this.$store.commit('playPrev')
+      }
+    },
     hotkeys(e) {
       if (e.target.nodeName !== 'INPUT') {
         if (e.code == 'ArrowRight') {
-        this.playNext(true)
+          this.playNext()
         } 
         else if (e.code == 'ArrowLeft') {
-          this.playNext(false)
+          this.playPrev()
         }
       }
     }

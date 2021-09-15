@@ -33,7 +33,12 @@ const store = createStore({
       this.commit('newVideo')
     },
     playPrev (state) {
-      state.currentlyPlaying = Math.abs(--state.currentlyPlaying % state.userList.length)
+      if (state.currentlyPlaying == 0) {
+        state.currentlyPlaying = state.userList.length - 1
+      }
+      else {
+        state.currentlyPlaying = --state.currentlyPlaying
+      }
       this.commit('newVideo')
     },
     newVideo(state) {
