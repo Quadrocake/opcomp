@@ -30,22 +30,6 @@ export default {
     }
   },
   methods: {
-    // playNext(prev) {
-    //   console.log(this.$store.state.currentlyPlaying)
-    //   if (this.$store.state.currentlyPlaying !== "") {
-    //     if (!prev) {
-    //       console.log("play next")
-    //       this.$store.commit('playNext')
-    //     }
-    //     else if (prev) {
-    //       console.log("play prev")
-    //       this.$store.commit('playPrev')
-    //     }
-    //   }
-    //   else {
-    //     this.$store.commit('randomOp')
-    //   }
-    // },
     playNext () {
       if (this.$store.state.currentlyPlaying !== "") {
         console.log("play next")

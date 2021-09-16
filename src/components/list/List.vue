@@ -14,15 +14,18 @@
     </ul>
   </div>
   <div class="oplist">
+    <span v-if="this.listName" id="listName">{{ this.listName }}</span>
     <span>
-      <span v-if="this.listName" id="listName">{{ this.listName }}</span>
       <button @click="this.$store.commit('shuffleList')">Random</button>
       <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
     </span>
     <ul v-show="!this.oplistHidden" class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
         <span class="index">{{ index + 1}}</span>
-        <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">{{ entry.title }}</span>
+        <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">
+          <div>{{ entry.title }}</div>
+          <div class="smallerFont">{{ entry.anime }}</div>
+        </span>
         <button class="dangerbutton" @click="this.$store.commit('removeListEntry', index)">Remove</button>
       </li>
     </ul>
@@ -113,6 +116,9 @@ ul {
   /* flex-wrap: wrap; */
   /* height: 570px; */
   scrollbar-width: none;
+
+  border-bottom-style: solid;
+  border-color: rgb(99, 53, 53);
 }
 ul::-webkit-scrollbar {
   display: none;
@@ -127,11 +133,12 @@ li {
   border-color: rgb(99, 53, 53);
   background: #2a2a2b;
   margin-bottom: -1px;
-  height: 2em;
+  height: 2.5em;
 }
 .complist button, .oplist button {
   background: #2a2a2b;
   height: 100%;
+  border: none;
   /* max-height: 2em; */
 }
 button:hover {
@@ -150,8 +157,9 @@ button:hover {
   overflow: hidden;
 
   display: flex;
-  align-items: center;
-  vertical-align: middle;
+  flex-direction: column;
+  align-items: left;
+  vertical-align: center;
 }
 li:hover {
   background: lightgray;
@@ -170,5 +178,10 @@ input {
   border-color: rgb(99, 53, 53);
   border-radius: 1em;
   padding: 0.10em 1em;
+  text-align: center;
+}
+.smallerFont {
+  font-size: calc(0.40em + 1vmin);
+  color: #353839;
 }
 </style>
