@@ -8,7 +8,9 @@
     </div>
     <ul>
       <li class="compli" v-for="(list, index) in this.compList['data']" :key="index">
-        <span class="compspan" @click="onclickGetList(list)">{{ list }}</span>
+        <span class="compspan" @click="onclickGetList(list)">
+          <span>{{ list }}</span>
+        </span>
         <button class="dangerbutton" @click="onclickDeleteList(list)">DELETE</button>
       </li>
     </ul>
@@ -42,7 +44,6 @@ export default {
       listName: "",
       compList: {},
       fetchedList: [],
-      socket: null,
       oplistHidden: false
     }
   },
@@ -80,10 +81,9 @@ export default {
     }
   },
   created() {
-    this.socket = socket
     socket.on("db update", () => {
     this.onclickGetComp()
-  })
+    })
   },
   mounted() {
     this.onclickGetComp()
@@ -147,7 +147,7 @@ button:hover {
 .dangerbutton:hover {
   background: lightcoral !important;
 }
-.opspan, .compspan {
+.opspan {
   width: 100%;
   cursor: pointer;
   
@@ -160,6 +160,19 @@ button:hover {
   flex-direction: column;
   align-items: left;
   vertical-align: center;
+}
+.compspan {
+  width: 100%;
+  cursor: pointer;
+  
+  margin-left: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
 }
 li:hover {
   background: lightgray;
