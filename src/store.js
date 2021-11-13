@@ -9,7 +9,7 @@ const store = createStore({
     userList: [],
     currentlyPlaying: 0,
     currentJson: {},
-    appUrl: "op.bots.confa.pp.ua",
+    appUrl: "https://op.bots.confa.pp.ua",
     // appUrl: "127.0.0.1:5000",
   },
   mutations: {

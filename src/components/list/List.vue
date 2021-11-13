@@ -51,7 +51,7 @@ export default {
     onclickUploadList() {
       const putData = {}
       putData['data'] = this.$store.state.userList
-      fetch(`//${this.$store.state.appUrl}/api/${this.listName}`, {
+      fetch(`${this.$store.state.appUrl}/api/${this.listName}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json'
@@ -60,18 +60,18 @@ export default {
       })
     },
     onclickGetComp() {
-      fetch(`//${this.$store.state.appUrl}/api`)
+      fetch(`${this.$store.state.appUrl}/api`)
       .then(response => response.json())
       .then(json => this.compList = json)
     },
     onclickGetList(list) {
-      fetch(`//${this.$store.state.appUrl}/api/${list}`)
+      fetch(`${this.$store.state.appUrl}/api/${list}`)
       .then(response => response.json())
       .then(json => {this.$store.commit('updateList', json['data']); console.log(json['data'])})
       .then(this.listName = list)
     },
     onclickDeleteList(list) {
-      fetch(`//${this.$store.state.appUrl}/api/${list}`, {
+      fetch(`${this.$store.state.appUrl}/api/${list}`, {
         method: 'delete'
       })
     },
