@@ -2,8 +2,6 @@ version: "3"
 
 services:
   opcomp-front:
-    image: opcomp:latest
+    image: opcomp-front:latest
     ports:
       - 5001:80
-    volumes:
-      - /home/opcomp_db/:/db
