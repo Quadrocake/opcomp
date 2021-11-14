@@ -23,7 +23,10 @@
     </span>
     <ul v-show="!this.oplistHidden" class="opul">
       <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
-        <span class="index">{{ index + 1}}</span>
+        <span
+          v-bind:class="{ currentlyPlaying: (this.$store.state.currentlyPlaying == index && this.$store.state.currentJson.opUrl == entry.opUrl) }" 
+          class="index">{{ index + 1}}</span>
+        <!-- <span v-bind:class="{ dot: (this.$store.state.currentlyPlaying == index && this.$store.state.currentJson.opUrl == entry.opUrl) }"></span> -->
         <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">
           <div>{{ entry.title }}</div>
           <div class="smallerFont">{{ entry.anime }}</div>
@@ -161,6 +164,15 @@ button:hover {
   align-items: left;
   vertical-align: center;
 }
+.currentlyPlaying {
+  background: rgb(99, 53, 53);
+}
+/* .dot {
+  height: 1em;
+  min-width: 1em;
+  background-color: #bbb;
+  border-radius: 50%;
+} */
 .compspan {
   width: 100%;
   cursor: pointer;
