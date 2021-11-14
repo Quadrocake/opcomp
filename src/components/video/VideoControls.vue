@@ -6,11 +6,17 @@
     <button @click="this.$store.commit('addListEntry', this.$store.state.currentJson)">Add to list</button>
     <button @click="playPrev">Prev</button>
     <button @click="playNext">Next</button>
+    <button @click="DT" :class="{toggled: isDt}">DT</button>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isDt: false
+    }
+  },
   methods:{
     reloadPlayer() {
       document.getElementById("videoBox").load();
@@ -39,6 +45,18 @@ export default {
         console.log("play prev")
         this.$store.commit('playPrev')
       }
+    },
+    DT () {
+      this.isDt = !this.isDt
+      if (this.isDt) {
+        document.querySelector('video').defaultPlaybackRate = 1.5
+        document.querySelector('video').playbackRate = 1.5
+      }
+      else {
+        document.querySelector('video').defaultPlaybackRate = 1
+        document.querySelector('video').playbackRate = 1
+      }
+      
     }
   },
   mounted() {
@@ -46,3 +64,8 @@ export default {
   }
 }
 </script>
+<style>
+.toggled{
+  background: gainsboro;
+}
+</style>
