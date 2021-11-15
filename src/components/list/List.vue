@@ -6,7 +6,7 @@
       <button @click="onclickUploadList">Upload</button>
       <button @click="onclickGetComp">Refresh</button>
     </div>
-    <ul>
+    <ul class="compul">
       <li class="compli" v-for="(list, index) in this.compList['data']" :key="index">
         <span class="compspan" @click="onclickGetList(list)">
           <span>{{ list }}</span>
@@ -105,7 +105,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-ul {
+.opul, .compul {
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
@@ -126,7 +126,7 @@ ul {
 ul::-webkit-scrollbar {
   display: none;
 }
-li {
+.compli, .opli {
   display: flex;
   width: 100%;
   min-width: 0;

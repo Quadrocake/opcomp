@@ -45,32 +45,31 @@ export default {
         this.$store.commit('randomOp')
       }
     },
-    playPrev () {
-      if (this.$store.state.currentlyPlaying !== "") {
-        console.log("play prev")
-        this.$store.commit('playPrev')
-      }
-    },
-    DT () {
-      this.isDt = !this.isDt
-      if (this.isDt) {
-        document.querySelector('video').defaultPlaybackRate = 1.5
-        document.querySelector('video').playbackRate = 1.5
-      }
-      else {
-        document.querySelector('video').defaultPlaybackRate = 1
-        document.querySelector('video').playbackRate = 1
-      }
-      
-    },
-    resetStartYear () {
-      document.getElementById('yearStartInput').value = ''
-      this.$store.commit('resetStartYear')
-    },
-    resetEndYear () {
-      document.getElementById('yearEndInput').value = ''
-      this.$store.commit('resetEndYear')
+  playPrev () {
+    if (this.$store.state.currentlyPlaying !== "") {
+      console.log("play prev")
+      this.$store.commit('playPrev')
     }
+  },
+  DT () {
+    this.isDt = !this.isDt
+    if (this.isDt) {
+      document.querySelector('video').defaultPlaybackRate = 1.5
+      document.querySelector('video').playbackRate = 1.5
+    }
+    else {
+      document.querySelector('video').defaultPlaybackRate = 1
+      document.querySelector('video').playbackRate = 1
+    }
+  },
+  resetStartYear () {
+    document.getElementById('yearStartInput').value = ''
+    this.$store.commit('resetStartYear')
+  },
+  resetEndYear () {
+    document.getElementById('yearEndInput').value = ''
+    this.$store.commit('resetEndYear')
+  }
   },
   mounted() {
     document.addEventListener('keyup', this.hotkeys, false);

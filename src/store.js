@@ -11,7 +11,8 @@ const store = createStore({
     currentJson: {},
     appUrl: "https://op.bots.confa.pp.ua",
     animeStartYear: '',
-    animeEndYear: ''
+    animeEndYear: '',
+    randomHistory: []
     // appUrl: "127.0.0.1:5000",
   },
   mutations: {
@@ -108,6 +109,10 @@ const store = createStore({
         opJson['opId'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['id']
       store.commit('resetCurrentlyPlaying')
       store.commit('updateUrl', {newUrl: opJson['opUrl'], sourse: "themes", opJson: opJson})
+      state.randomHistory.unshift(opJson)
+      if (state.randomHistory.length > 5) {
+        state.randomHistory.pop()
+      }
       })
     }
     }
