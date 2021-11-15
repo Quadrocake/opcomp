@@ -7,6 +7,11 @@
     <button @click="playPrev">Prev</button>
     <button @click="playNext">Next</button>
     <button @click="DT" :class="{toggled: isDt}">DT</button>
+    <input id="yearStartInput" class="yearInput" type="number" v-model="this.$store.state.animeStartYear">
+    <button @click="resetStartYear">X</button>
+    <span> - </span>
+    <input id="yearEndInput" class="yearInput" type="number" v-model="this.$store.state.animeEndYear">
+    <button @click="resetEndYear">X</button>
   </div>
 </template>
 
@@ -57,6 +62,14 @@ export default {
         document.querySelector('video').playbackRate = 1
       }
       
+    },
+    resetStartYear () {
+      document.getElementById('yearStartInput').value = ''
+      this.$store.commit('resetStartYear')
+    },
+    resetEndYear () {
+      document.getElementById('yearEndInput').value = ''
+      this.$store.commit('resetEndYear')
     }
   },
   mounted() {
@@ -67,5 +80,8 @@ export default {
 <style>
 .toggled{
   background: gainsboro;
+}
+.yearInput{
+  width: 4em;
 }
 </style>
