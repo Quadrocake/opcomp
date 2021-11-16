@@ -187,7 +187,7 @@ button:hover {
   vertical-align: middle;
 }
 li:hover {
-  background: lightgray;
+  background: rgb(99, 53, 53);
 }
 .index {
   width: calc(1.2em + 1vmin);
@@ -207,6 +207,6 @@ input {
 }
 .smallerFont {
   font-size: calc(0.40em + 1vmin);
-  color: #353839;
+  color: Gray;
 }
 </style>

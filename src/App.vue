@@ -39,7 +39,7 @@ body {
   grid-template-rows: 90vh 1fr;
 
   font-family: 'Roboto', sans-serif;
-  color: gray;
+  color: Silver;
 }
 button {
   border: none;
