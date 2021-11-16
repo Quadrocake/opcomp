@@ -12,7 +12,8 @@ const store = createStore({
     appUrl: "https://op.bots.confa.pp.ua",
     animeStartYear: '',
     animeEndYear: '',
-    randomHistory: []
+    randomHistory: [],
+    filterOpType: 0
     // appUrl: "127.0.0.1:5000",
   },
   mutations: {
@@ -86,33 +87,59 @@ const store = createStore({
     },
     randomOp (state) {
       // const NEW_OP_REQUEST = 'https://staging.animethemes.moe/api/anime?sort=random&fields[anime]=name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&page[size]=1&filter[has]=animethemeentries'
-      let yearStartFilter = ''
-      let yearEndFilter = ''
+      let filter = ''
       if (state.animeStartYear) {
-        yearStartFilter = '&filter[year][gte]=' + state.animeStartYear
+        filter = filter + '&filter[year][gte]=' + state.animeStartYear
       }
       if (state.animeEndYear) {
-        yearEndFilter = '&filter[year][lte]=' + state.animeEndYear
+        filter = filter + '&filter[year][lte]=' + state.animeEndYear
       }
-      const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/anime?sort=random&fields[anime]=name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&page[size]=1&filter[has]=animethemeentries' + yearStartFilter + yearEndFilter
+      if (state.filterOpType == 1) {
+        filter = filter + '&filter[year][lte]='
+      }
+      const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/anime?sort=random&fields[anime]=name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&page[size]=1&filter[has]=animethemeentries' + filter
       fetch(RANDOM_OP_REQUEST)
       .then(response => response.json())
       .then(json => {
         const opJson = {}
-        const opNum = Math.floor(Math.random() * json['anime'][0]['animethemes'].length)
-        opJson['sourse'] = "themes"
-        opJson['type'] = json['anime'][0]['animethemes'][opNum]['type']
-        opJson['year'] = json['anime'][0]['year']
-        opJson['title'] = json['anime'][0]['animethemes'][opNum]['song']['title']
-        opJson['anime'] = json['anime'][0]['name']
-        opJson['opUrl'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['link']
-        opJson['opId'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['id']
-      store.commit('resetCurrentlyPlaying')
-      store.commit('updateUrl', {newUrl: opJson['opUrl'], sourse: "themes", opJson: opJson})
-      state.randomHistory.unshift(opJson)
-      if (state.randomHistory.length > 5) {
-        state.randomHistory.pop()
-      }
+        const opNumberList = []
+        for (let counter = 0; counter < json['anime'][0]['animethemes'].length; counter++) {
+          console.log(counter)
+          if (state.filterOpType == 0) {
+            opNumberList.push(counter)
+          }
+          else if (state.filterOpType == 1) {
+            if (json['anime'][0]['animethemes'][counter]['type'] == "OP") {
+              opNumberList.push(counter)
+            }
+          }
+          else if (state.filterOpType == 2) {
+            if (json['anime'][0]['animethemes'][counter]['type'] == "ED") {
+              opNumberList.push(counter)
+            }
+          }
+        }
+        if (opNumberList.length) {
+          const opNum = opNumberList[Math.floor(Math.random() * opNumberList.length)]
+          console.log(opNum)
+          opJson['sourse'] = "themes"
+          opJson['type'] = json['anime'][0]['animethemes'][opNum]['type']
+          opJson['year'] = json['anime'][0]['year']
+          opJson['title'] = json['anime'][0]['animethemes'][opNum]['song']['title']
+          opJson['anime'] = json['anime'][0]['name']
+          opJson['opUrl'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['link']
+          opJson['opId'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['id']
+          store.commit('resetCurrentlyPlaying')
+          store.commit('updateUrl', {newUrl: opJson['opUrl'], sourse: "themes", opJson: opJson})
+          state.randomHistory.unshift(opJson)
+          if (state.randomHistory.length > 5) {
+            state.randomHistory.pop()
+          }
+        }
+        else {
+          this.commit('randomOp', state)
+          setTimeout(() => { console.log("Wait after repeated request"); }, 2000)
+        }
       })
     }
     }

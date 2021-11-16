@@ -12,6 +12,12 @@
     <span> - </span>
     <input id="yearEndInput" class="yearInput" type="number" v-model="this.$store.state.animeEndYear">
     <button @click="resetEndYear">X</button>
+    <select>
+      <option disabled value="Type"></option>
+      <option @click="changeTypeFilter(0)">All</option>
+      <option @click="changeTypeFilter(1)">OP</option>
+      <option @click="changeTypeFilter(2)">ED</option>
+    </select>
   </div>
 </template>
 
@@ -69,10 +75,13 @@ export default {
   resetEndYear () {
     document.getElementById('yearEndInput').value = ''
     this.$store.commit('resetEndYear')
-  }
+  },
+  changeTypeFilter (type) {
+    this.$store.state.filterOpType = type
   },
   mounted() {
     document.addEventListener('keyup', this.hotkeys, false);
+  }
   }
 }
 </script>
