@@ -137,8 +137,8 @@ const store = createStore({
           }
         }
         else {
-          this.commit('randomOp', state)
           setTimeout(() => { console.log("Wait after repeated request"); }, 2000)
+          this.commit('randomOp', state)
         }
       })
     }
