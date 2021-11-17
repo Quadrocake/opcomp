@@ -90,6 +90,6 @@ export default {
   background: gainsboro;
 }
 .yearInput{
-  width: 4em;
+  width: 4rem;
 }
 </style>

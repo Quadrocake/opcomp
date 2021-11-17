@@ -190,9 +190,9 @@ li:hover {
   background: rgb(99, 53, 53);
 }
 .index {
-  width: calc(1.2em + 1vmin);
+  width: calc(1.2rem + 1vmin);
   color: #353839;
-  font-size: calc(0.40em + 1vmin);
+  font-size: calc(0.40rem + 1vmin);
 }
 input {
   height: 1.5em;
@@ -201,12 +201,12 @@ input {
   border-style: solid;
   border-width: 2px;
   border-color: rgb(99, 53, 53);
-  border-radius: 1em;
-  padding: 0.10em 1em;
+  border-radius: 1rem;
+  padding: 0.10rem 1rem;
   text-align: center;
 }
 .smallerFont {
-  font-size: calc(0.40em + 1vmin);
+  font-size: calc(0.40rem + 1vmin);
   color: Gray;
 }
 </style>

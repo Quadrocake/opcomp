@@ -30,7 +30,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
   background-color: #2a2a2b;
-  font-size: calc(0.75em + 1vmin);
+  font-size: calc(0.6rem + 1vmin);
 }
 .wrapper {
   display: grid;
@@ -47,14 +47,17 @@ button {
   cursor: pointer;
   font-family: 'Urbanist', sans-serif;
   color: Gray;
-  font-size: calc(0.30em + 1vmin);
-  height: 1.7em;
+  font-size: calc(0.30rem + 1vmin);
+  height: 1.5rem;
 }
 input {
   border: none;
   background: #353839;
   color: Gray;
   font-size: calc(0.30em + 1vmin);
+  height: 1.5rem;
+  padding: 0;
+  padding-left: 0.10rem;
 }
 .video {
   grid-row: 1;

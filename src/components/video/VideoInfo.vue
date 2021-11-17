@@ -49,12 +49,6 @@ export default {
   .videoInfoLine, .historyspan {
     display: inline;
   }
-  #synopsis {
-    width: 900px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
   #historylist {
     list-style-type: none;
   }
