@@ -3,7 +3,7 @@
     <List/>
     <Video class="video"/>
     <Search class="search"/>
-    <SearchYT class="search"/>
+    <SearchYT class="searchYt"/>
   </div>
 </template>
 
@@ -63,5 +63,9 @@ input {
 }
 .search {
   grid-row: 2;
+}
+.searchYt {
+  grid-row: 2;
+  grid-column: 3;
 }
 </style>
