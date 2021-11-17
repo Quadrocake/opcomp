@@ -7,7 +7,7 @@
     <button @click="playPrev">Prev</button>
     <button @click="playNext">Next</button>
     <button @click="DT" :class="{toggled: isDt}">DT</button>
-    <button @click="BASS" :class="{toggled: isBass}">BASS</button>
+    <button @click="NC" :class="{toggled: isBass}">NC</button>
     <input id="yearStartInput" class="yearInput" type="number" v-model="this.$store.state.animeStartYear">
     <button @click="resetStartYear">X</button>
     <span> - </span>
@@ -70,17 +70,28 @@ export default {
       document.querySelector('video').playbackRate = 1
     }
   },
-  BASS () {
-    var context = new AudioContext(),
-      audioSource = context.createMediaElementSource(document.getElementById("videoBox")),
-      filter = context.createBiquadFilter();
-    audioSource.connect(filter);
-    filter.connect(context.destination);
+  NC () {
+    this.isBass = !this.isBass
+     if (this.isBass) {
+      document.querySelector('video').mozPreservesPitch = false
+      document.querySelector('video').preservesPitch = false
+      
+    }
+    else {
+      document.querySelector('video').mozPreservesPitch = true
+      document.querySelector('video').preservesPitch = true
+      
+    }
 
-    // Configure filter
-    filter.type = "lowshelf";
-    filter.frequency.value = 1000;
-    filter.gain.value = 25;
+    // var context = new AudioContext(),
+    //   audioSource = context.createMediaElementSource(document.getElementById("videoBox")),
+    //   filter = context.createBiquadFilter();
+    // audioSource.connect(filter);
+    // filter.connect(context.destination);
+
+    // filter.type = "lowshelf";
+    // filter.frequency.value = 1000;
+    // filter.gain.value = 25;
 
   },
   resetStartYear () {
