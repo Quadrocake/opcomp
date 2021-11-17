@@ -98,7 +98,7 @@ const store = createStore({
       if (state.filterOpType == 1) {
         filter = filter + '&filter[year][lte]='
       }
-      const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/anime?sort=random&fields[anime]=name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&page[size]=1&filter[has]=animethemeentries' + filter
+      const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/anime?sort=random&fields[anime]=id,name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&page[size]=1&filter[has]=animethemeentries' + filter
       fetch(RANDOM_OP_REQUEST)
       .then(response => response.json())
       .then(json => {
@@ -127,7 +127,7 @@ const store = createStore({
           store.commit('resetCurrentlyPlaying')
           store.commit('updateUrl', {newUrl: randomOps[randomOp]['opUrl'], sourse: "themes", opJson: randomOps[randomOp]})
           state.randomHistory.unshift(randomOps[randomOp])
-          if (state.randomHistory.length > 5) {
+          if (state.randomHistory.length > 10) {
             state.randomHistory.pop()
           }
         }
@@ -149,6 +149,7 @@ const store = createStore({
         opJson['year'] = json['anime'][0]['year']
         opJson['title'] = json['anime'][0]['animethemes'][counter]['song']['title']
         opJson['anime'] = json['anime'][0]['name']
+        opJson['animeId'] = json['anime'][0]['id']
         opJson['opUrl'] = json['anime'][0]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['link']
         opJson['opId'] = json['anime'][0]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['id']
         

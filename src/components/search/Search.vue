@@ -22,7 +22,8 @@ export default {
   data() {
       return {
           search: "",
-          BASE_SEARCH_URL: "https://staging.animethemes.moe/api/search?&fields[search]=anime&include[anime]=animethemes.animethemeentries.videos,animethemes.song&fields[anime]=name&fields[animetheme]=type&fields[animethemeentry]=id&fields[song]=title&fields[video]=link&page[limit]=5&",
+          // BASE_SEARCH_URL: "https://staging.animethemes.moe/api/search?&fields[search]=anime&include[anime]=animethemes.animethemeentries.videos,animethemes.song&fields[anime]=name&fields[animetheme]=type&fields[animethemeentry]=id&fields[song]=title&fields[video]=link&page[limit]=5&",
+          BASE_SEARCH_URL:  'https://staging.animethemes.moe/api/search?fields[search]=anime&fields[anime]=id,name,year&fields[video]=id,link&fields[animetheme]=type,slug&fields[song]=title&fields[animethemeentry]=spoiler&include=animethemes.animethemeentries.videos,animethemes.song&filter[has]=animethemeentries&page[limit]=5&',
           response: {},
           animeObjectList: []
       }
@@ -43,12 +44,21 @@ export default {
         for (const item2 in json['search']['anime'][item]['animethemes']) {
           const opEntry = {}
           animeObj['opList'] = opList
+          // opEntry['sourse'] = "themes"
+          // opEntry['type'] = json['search']['anime'][item]['animethemes'][item2]['type']
+          // opEntry['anime'] = json['search']['anime'][item]['name']
+          // opEntry['title'] = json['search']['anime'][item]['animethemes'][item2]['song']['title']
+          // opEntry['opUrl'] = json['search']['anime'][item]['animethemes'][item2]['animethemeentries'][0]['videos'][0]['link']
           opEntry['sourse'] = "themes"
           opEntry['type'] = json['search']['anime'][item]['animethemes'][item2]['type']
-          opEntry['anime'] = json['search']['anime'][item]['name']
+          opEntry['year'] = json['search']['anime'][item]['year']
           opEntry['title'] = json['search']['anime'][item]['animethemes'][item2]['song']['title']
+          opEntry['anime'] = json['search']['anime'][item]['name']
+          opEntry['animeId'] = json['search']['anime'][item]['id']
           opEntry['opUrl'] = json['search']['anime'][item]['animethemes'][item2]['animethemeentries'][0]['videos'][0]['link']
+          opEntry['opId'] = json['search']['anime'][item]['animethemes'][item2]['animethemeentries'][0]['videos'][0]['id']
           opList.push(opEntry)
+          console.log(opList)
         }
       this.animeObjectList.push(animeObj)
       }    
