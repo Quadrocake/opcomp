@@ -13,7 +13,8 @@ const store = createStore({
     animeStartYear: '',
     animeEndYear: '',
     randomHistory: [],
-    filterOpType: 0
+    filterOpType: 0,
+    allAnimeOps: []
     // appUrl: "127.0.0.1:5000",
   },
   mutations: {
@@ -101,37 +102,31 @@ const store = createStore({
       fetch(RANDOM_OP_REQUEST)
       .then(response => response.json())
       .then(json => {
-        const opJson = {}
-        const opNumberList = []
-        for (let counter = 0; counter < json['anime'][0]['animethemes'].length; counter++) {
+        const filteredOpList = []
+        this.commit('parseRandomJson', {json: json})
+        const randomOps = state.allAnimeOps
+        console.log(randomOps)
+        for (let counter = 0; counter < randomOps.length; counter++) {
           console.log(counter)
           if (state.filterOpType == 0) {
-            opNumberList.push(counter)
+            filteredOpList.push(counter)
           }
           else if (state.filterOpType == 1) {
-            if (json['anime'][0]['animethemes'][counter]['type'] == "OP") {
-              opNumberList.push(counter)
+            if (randomOps[counter]['type'] == "OP") {
+              filteredOpList.push(counter)
             }
           }
           else if (state.filterOpType == 2) {
-            if (json['anime'][0]['animethemes'][counter]['type'] == "ED") {
-              opNumberList.push(counter)
+            if (randomOps[counter]['type'] == "ED") {
+              filteredOpList.push(counter)
             }
           }
         }
-        if (opNumberList.length) {
-          const opNum = opNumberList[Math.floor(Math.random() * opNumberList.length)]
-          console.log(opNum)
-          opJson['sourse'] = "themes"
-          opJson['type'] = json['anime'][0]['animethemes'][opNum]['type']
-          opJson['year'] = json['anime'][0]['year']
-          opJson['title'] = json['anime'][0]['animethemes'][opNum]['song']['title']
-          opJson['anime'] = json['anime'][0]['name']
-          opJson['opUrl'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['link']
-          opJson['opId'] = json['anime'][0]['animethemes'][opNum]['animethemeentries'][0]['videos'][0]['id']
+        if (filteredOpList.length) {
+          const randomOp = filteredOpList[Math.floor(Math.random() * filteredOpList.length)]
           store.commit('resetCurrentlyPlaying')
-          store.commit('updateUrl', {newUrl: opJson['opUrl'], sourse: "themes", opJson: opJson})
-          state.randomHistory.unshift(opJson)
+          store.commit('updateUrl', {newUrl: randomOps[randomOp]['opUrl'], sourse: "themes", opJson: randomOps[randomOp]})
+          state.randomHistory.unshift(randomOps[randomOp])
           if (state.randomHistory.length > 5) {
             state.randomHistory.pop()
           }
@@ -141,6 +136,25 @@ const store = createStore({
           this.commit('randomOp', state)
         }
       })
+    },
+    parseRandomJson (state, payload) {
+      const json = payload.json
+      const randomOps = []
+
+      for (let counter = 0; counter < json['anime'][0]['animethemes'].length; counter++) {
+        const opJson = {}
+
+        opJson['sourse'] = "themes"
+        opJson['type'] = json['anime'][0]['animethemes'][counter]['type']
+        opJson['year'] = json['anime'][0]['year']
+        opJson['title'] = json['anime'][0]['animethemes'][counter]['song']['title']
+        opJson['anime'] = json['anime'][0]['name']
+        opJson['opUrl'] = json['anime'][0]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['link']
+        opJson['opId'] = json['anime'][0]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['id']
+        
+        randomOps.push(opJson)
+      }
+      state.allAnimeOps = randomOps
     }
     }
   })
