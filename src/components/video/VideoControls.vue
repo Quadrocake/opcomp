@@ -7,6 +7,7 @@
     <button @click="playPrev">Prev</button>
     <button @click="playNext">Next</button>
     <button @click="DT" :class="{toggled: isDt}">DT</button>
+    <button @click="BASS" :class="{toggled: isBass}">BASS</button>
     <input id="yearStartInput" class="yearInput" type="number" v-model="this.$store.state.animeStartYear">
     <button @click="resetStartYear">X</button>
     <span> - </span>
@@ -25,7 +26,8 @@
 export default {
   data() {
     return {
-      isDt: false
+      isDt: false,
+      isBass: false
     }
   },
   methods:{
@@ -67,6 +69,19 @@ export default {
       document.querySelector('video').defaultPlaybackRate = 1
       document.querySelector('video').playbackRate = 1
     }
+  },
+  BASS () {
+    var context = new AudioContext(),
+      audioSource = context.createMediaElementSource(document.getElementById("videoBox")),
+      filter = context.createBiquadFilter();
+    audioSource.connect(filter);
+    filter.connect(context.destination);
+
+    // Configure filter
+    filter.type = "lowshelf";
+    filter.frequency.value = 1000;
+    filter.gain.value = 25;
+
   },
   resetStartYear () {
     document.getElementById('yearStartInput').value = ''

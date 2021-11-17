@@ -7,7 +7,7 @@
       ref="youtube" :videoid="this.$store.state.ytId" :width="900" :height="600"/>
     </div>
     <div>
-      <video id="videoBox" controls autoplay="autoplay"
+      <video crossorigin="anonymous" id="videoBox" controls autoplay="autoplay"
         v-if='(!this.$store.state.ytPlaying) && (this.$store.state.videoUrl !== "")'
         :src="this.$store.state.videoUrl"
         @ended="playNext()"
