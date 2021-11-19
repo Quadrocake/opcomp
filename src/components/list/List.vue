@@ -63,6 +63,9 @@ export default {
       })
     },
     onclickGetComp() {
+      console.log(this.$store._modules.root._children.appUrl)
+      console.log(this.$store.getters.getAppURL)
+      console.log(this.$store.state.appUrl)
       fetch(`${this.$store.state.appUrl}/api`)
       .then(response => response.json())
       .then(json => this.compList = json)

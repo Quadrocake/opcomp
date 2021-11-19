@@ -35,79 +35,68 @@ export default {
       document.getElementById("videoBox").load();
     },
     hotkeys(e) {
-    if (e.target.nodeName !== 'INPUT') {
-      if (e.code == 'KeyR') {
-        this.$emit('onclickRandom')
-      }
-      else if (e.code == 'KeyK') {
-        this.$emit('onclickPause')
-      }
-    }
-  },
-  playNext () {
-      if (this.$store.state.currentlyPlaying !== "") {
-        console.log("play next")
-        this.$store.commit('playNext')
-      }
-      else {
-        this.$store.commit('randomOp')
+      if (e.target.nodeName !== 'INPUT') {
+        if (e.code == 'KeyR') {
+          this.$emit('onclickRandom')
+        }
+        else if (e.code == 'KeyK') {
+          this.$emit('onclickPause')
+        }
       }
     },
-  playPrev () {
-    if (this.$store.state.currentlyPlaying !== "") {
-      console.log("play prev")
-      this.$store.commit('playPrev')
+    playNext () {
+        if (this.$store.state.currentlyPlaying !== "") {
+          console.log("play next")
+          this.$store.commit('playNext')
+        }
+        else {
+          this.$store.commit('randomOp')
+        }
+      },
+    playPrev () {
+      if (this.$store.state.currentlyPlaying !== "") {
+        console.log("play prev")
+        this.$store.commit('playPrev')
+      }
+    },
+    DT () {
+      this.isDt = !this.isDt
+      const videoSelector = document.querySelector('video')
+      if (this.isDt) {
+        videoSelector.defaultPlaybackRate = 1.5
+        videoSelector.playbackRate = 1.5
+      }
+      else {
+        videoSelector.defaultPlaybackRate = 1
+        videoSelector.playbackRate = 1
+      }
+    },
+    NC () {
+      this.isBass = !this.isBass
+      const videoSelector = document.querySelector('video')
+      if (this.isBass) {
+        videoSelector.mozPreservesPitch = false
+        videoSelector.preservesPitch = false
+      }
+      else {
+        videoSelector.mozPreservesPitch = true
+        videoSelector.preservesPitch = true
+      }
+    },
+    resetStartYear () {
+      document.getElementById('yearStartInput').value = ''
+      this.$store.commit('resetStartYear')
+    },
+    resetEndYear () {
+      document.getElementById('yearEndInput').value = ''
+      this.$store.commit('resetEndYear')
+    },
+    changeTypeFilter (type) {
+      this.$store.state.filterOpType = type
+    },
+    mounted() {
+      document.addEventListener('keyup', this.hotkeys, false);
     }
-  },
-  DT () {
-    this.isDt = !this.isDt
-    if (this.isDt) {
-      document.querySelector('video').defaultPlaybackRate = 1.5
-      document.querySelector('video').playbackRate = 1.5
-    }
-    else {
-      document.querySelector('video').defaultPlaybackRate = 1
-      document.querySelector('video').playbackRate = 1
-    }
-  },
-  NC () {
-    this.isBass = !this.isBass
-     if (this.isBass) {
-      document.querySelector('video').mozPreservesPitch = false
-      document.querySelector('video').preservesPitch = false
-      
-    }
-    else {
-      document.querySelector('video').mozPreservesPitch = true
-      document.querySelector('video').preservesPitch = true
-      
-    }
-
-    // var context = new AudioContext(),
-    //   audioSource = context.createMediaElementSource(document.getElementById("videoBox")),
-    //   filter = context.createBiquadFilter();
-    // audioSource.connect(filter);
-    // filter.connect(context.destination);
-
-    // filter.type = "lowshelf";
-    // filter.frequency.value = 1000;
-    // filter.gain.value = 25;
-
-  },
-  resetStartYear () {
-    document.getElementById('yearStartInput').value = ''
-    this.$store.commit('resetStartYear')
-  },
-  resetEndYear () {
-    document.getElementById('yearEndInput').value = ''
-    this.$store.commit('resetEndYear')
-  },
-  changeTypeFilter (type) {
-    this.$store.state.filterOpType = type
-  },
-  mounted() {
-    document.addEventListener('keyup', this.hotkeys, false);
-  }
   }
 }
 </script>
