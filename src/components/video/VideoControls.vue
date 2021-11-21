@@ -8,10 +8,10 @@
     <button @click="playNext">Next</button>
     <button @click="DT" :class="{toggled: isDt}">DT</button>
     <button @click="NC" :class="{toggled: isBass}">NC</button>
-    <input id="yearStartInput" class="yearInput" type="number" v-model="this.$store.state.animeStartYear">
+    <input id="yearStartInput" class="yearInput" type="number" v-model="animeStartYear">
     <button @click="resetStartYear">X</button>
     <span> - </span>
-    <input id="yearEndInput" class="yearInput" type="number" v-model="this.$store.state.animeEndYear">
+    <input id="yearEndInput" class="yearInput" type="number" v-model="animeEndYear">
     <button @click="resetEndYear">X</button>
     <select>
       <option disabled value="Type"></option>
@@ -29,6 +29,24 @@ export default {
       isDt: false,
       isBass: false
     }
+  },
+  computed: {
+    animeStartYear: {
+      get () {
+        return this.$store.state.ThemesApi.filters.animeStartYear
+      },
+      set (value) {
+        this.$store.commit('updateAnimeStartYear', value)
+      }
+    },
+    animeEndYear: {
+      get () {
+        return this.$store.state.ThemesApi.filters.animeEndYear
+      },
+      set (value) {
+        this.$store.commit('updateAnimeEndYear', value)
+      }
+    },
   },
   methods:{
     reloadPlayer() {
@@ -50,7 +68,7 @@ export default {
           this.$store.commit('playNext')
         }
         else {
-          this.$store.commit('randomOp')
+          this.$store.dispatch('FETCH_RANDOM_ANIME')
         }
       },
     playPrev () {
@@ -85,14 +103,15 @@ export default {
     },
     resetStartYear () {
       document.getElementById('yearStartInput').value = ''
-      this.$store.commit('resetStartYear')
+      this.$store.commit('resetAnimeStartYear')
     },
     resetEndYear () {
       document.getElementById('yearEndInput').value = ''
-      this.$store.commit('resetEndYear')
+      this.$store.commit('resetAnimeEndYear')
     },
     changeTypeFilter (type) {
-      this.$store.state.filterOpType = type
+      // this.$store.state.filterOpType = type
+      this.$store.dispatch('CHANGE_TYPE_FILTER', {value: type})
     },
     mounted() {
       document.addEventListener('keyup', this.hotkeys, false);

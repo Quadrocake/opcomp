@@ -22,12 +22,12 @@
       <button @click="this.oplistHidden = !this.oplistHidden">Hide</button>
     </span>
     <ul v-show="!this.oplistHidden" class="opul">
-      <li class="opli" v-for="(entry, index) in this.$store.state.userList" :key="index">
+      <li class="opli" v-for="(entry, index) in this.$store.state.oldstore.userList" :key="index">
         <span
-          v-bind:class="{ currentlyPlaying: (this.$store.state.currentlyPlaying == index && this.$store.state.currentJson.opUrl == entry.opUrl) }" 
+          v-bind:class="{ currentlyPlaying: (this.$store.state.oldstore.currentlyPlaying == index && this.$store.state.oldstore.currentJson.opUrl == entry.opUrl) }" 
           class="index">{{ index + 1}}</span>
         <!-- <span v-bind:class="{ dot: (this.$store.state.currentlyPlaying == index && this.$store.state.currentJson.opUrl == entry.opUrl) }"></span> -->
-        <span class="opspan" @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">
+        <span class="opspan" @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry, index: index})">
           <div>{{ entry.title }}</div>
           <div class="smallerFont">{{ entry.anime }}</div>
         </span>
@@ -63,21 +63,18 @@ export default {
       })
     },
     onclickGetComp() {
-      console.log(this.$store._modules.root._children.appUrl)
-      console.log(this.$store.getters.getAppURL)
-      console.log(this.$store.state.appUrl)
-      fetch(`${this.$store.state.appUrl}/api`)
+      fetch(`${this.$store.state.oldstore.appUrl}/api`)
       .then(response => response.json())
       .then(json => this.compList = json)
     },
     onclickGetList(list) {
-      fetch(`${this.$store.state.appUrl}/api/${list}`)
+      fetch(`${this.$store.state.oldstore.appUrl}/api/${list}`)
       .then(response => response.json())
       .then(json => {this.$store.commit('updateList', json['data']); console.log(json['data'])})
       .then(this.listName = list)
     },
     onclickDeleteList(list) {
-      fetch(`${this.$store.state.appUrl}/api/${list}`, {
+      fetch(`${this.$store.state.oldstore.appUrl}/api/${list}`, {
         method: 'delete'
       })
     },

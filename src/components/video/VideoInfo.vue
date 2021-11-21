@@ -4,15 +4,15 @@
     <button @click="showHistory = !showHistory">History</button>
     <button @click="showAllOps = !showAllOps">All OPs</button>
   </div>
-  <div v-if="this.$store.state.currentJson">
-    <p class="videoInfoLine">{{ this.$store.state.currentJson['anime'] }}</p> &nbsp;
-    <p class="videoInfoLine" v-if="this.$store.state.currentJson['type']">{{ this.$store.state.currentJson['type'] }}</p> &nbsp;
-    <p class="videoInfoLine">{{ this.$store.state.currentJson['title'] }}</p> 
+  <div v-if="this.$store.state.ThemesApi.video.themeObject">
+    <p class="videoInfoLine">{{ this.$store.state.ThemesApi.video.themeObject['anime'] }}</p> &nbsp;
+    <p class="videoInfoLine" v-if="this.$store.state.ThemesApi.video.themeObject['type']">{{ this.$store.state.ThemesApi.video.themeObject['type'] }}</p> &nbsp;
+    <p class="videoInfoLine">{{ this.$store.state.ThemesApi.video.themeObject['title'] }}</p> 
   </div>
   <div>
     <ul v-if="showHistory" id="historylist">
-      <li v-for="entry in this.$store.state.randomHistory" :key="entry.opId">
-        <span @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">
+      <li v-for="entry in this.$store.state.ThemesApi.playHistory" :key="entry.opId">
+        <span @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">
           <div class="historyspan">{{ entry.anime }}</div> &nbsp;
           <div class="historyspan">{{ entry.type }}</div> &nbsp;
           <div class="historyspan">{{ entry.title }}</div>
@@ -22,8 +22,8 @@
   </div>
   <div>
     <ul v-if="showAllOps" id="historylist">
-      <li v-for="entry in this.$store.state.allAnimeOps" :key="entry.opId">
-        <span @click="this.$store.commit('updateUrl', {newUrl: entry.opUrl, index: index, sourse: entry.sourse, opJson: entry})">
+      <li v-for="entry in this.$store.state.ThemesApi.animeThemesList" :key="entry.opId">
+        <span @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">
           <div class="historyspan">{{ entry.anime }}</div> &nbsp;
           <div class="historyspan">{{ entry.type }}</div> &nbsp;
           <div class="historyspan">{{ entry.title }}</div>

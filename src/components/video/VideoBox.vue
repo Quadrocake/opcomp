@@ -2,14 +2,14 @@
   <div class="videocontainer">
     <div>
       <YoutubeVue3
-      v-if="this.$store.state.ytPlaying && this.$store.state.ytId"
+      v-if="this.$store.state.ThemesApi.ytubePlaying && this.$store.state.ThemesApi.video.ytubeId"
       @ended="playNext()"
-      ref="youtube" :videoid="this.$store.state.ytId" :width="900" :height="600"/>
+      ref="youtube" :videoid="this.$store.state.ThemesApi.video.ytubeId" :width="900" :height="600"/>
     </div>
     <div>
       <video id="videoBox" controls autoplay="autoplay"
-        v-if='(!this.$store.state.ytPlaying) && (this.$store.state.videoUrl !== "")'
-        :src="this.$store.state.videoUrl"
+        v-if='(!this.$store.state.ThemesApi.ytubePlaying) && (this.$store.state.ThemesApi.video.themeUrl !== "")'
+        :src="this.$store.state.ThemesApi.video.themeUrl"
         @ended="playNext()"
       ></video>
     </div>
@@ -31,16 +31,16 @@ export default {
   },
   methods: {
     playNext () {
-      if (this.$store.state.currentlyPlaying !== "") {
+      if (this.$store.state.ThemesApi.opIndex !== "") {
         console.log("play next")
         this.$store.commit('playNext')
       }
       else {
-        this.$store.commit('randomOp')
+        this.$store.dispatch('FETCH_RANDOM_ANIME')
       }
     },
     playPrev () {
-      if (this.$store.state.currentlyPlaying !== "") {
+      if (this.$store.state.ThemesApi.opIndex !== "") {
         console.log("play prev")
         this.$store.commit('playPrev')
       }

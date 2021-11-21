@@ -3,7 +3,7 @@
     <VideoBox id="VideoBox"/>
     <VideoControls id="VideoControls"
         @onclickPause="playPauseVid"
-        @onclickRandom="this.$store.commit('randomOp')"
+        @onclickRandom="this.$store.dispatch('FETCH_RANDOM_ANIME')"
     />
     <VideoInfo id="Videoinfo"/>
   </div>
@@ -14,8 +14,6 @@ import VideoBox from './VideoBox.vue'
 import VideoControls from './VideoControls.vue'
 import VideoInfo from './VideoInfo.vue'
 
-// const RANDOM_OP_REQUEST = 'https://staging.animethemes.moe/api/animetheme?sort=random&include=anime,animethemeentries.videos&filter[has]=animethemeentries&page[size]=1'
-
 export default {
   name: 'Video',
   components: {
@@ -23,13 +21,8 @@ export default {
     VideoControls,
     VideoInfo
   },
-  // data() {
-  //   return {
-  //     videoJson: {}
-  //   }
-  // },
   mounted() {
-    this.$store.commit('randomOp')
+    this.$store.dispatch('FETCH_RANDOM_ANIME')
   },
   methods: {
     playPauseVid() {
@@ -40,19 +33,6 @@ export default {
         video.pause()
       }
     },
-    // randomOp() {
-    //   fetch(RANDOM_OP_REQUEST)
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     this.videoJson = json
-    //     const url = json["animethemes"][0]["animethemeentries"][0]["videos"][0]["link"]
-    //     this.$store.commit('resetCurrentlyPlaying')
-    //     this.updVideoSrc(url)
-    //   })
-    // },
-    // updVideoSrc(url){
-    //   this.$store.commit('updateUrl', {newUrl: url, sourse: "themes"})
-    // }
   }
 }
 </script>
