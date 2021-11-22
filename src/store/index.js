@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
-import oldstore from './modules/oldstore'
-import ThemesApi from './modules/ThemesApi'
+import Themes from './modules/Themes'
+import List from './modules/List'
 
 export default createStore({
 	modules: {
-		oldstore,
-		ThemesApi
+		Themes,
+		List
 	}
 });

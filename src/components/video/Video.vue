@@ -1,12 +1,12 @@
 <template>
-  <div id="videowrapper">
-    <VideoBox id="VideoBox"/>
-    <VideoControls id="VideoControls"
-        @onclickPause="playPauseVid"
-        @onclickRandom="this.$store.dispatch('FETCH_RANDOM_ANIME')"
-    />
-    <VideoInfo id="Videoinfo"/>
-  </div>
+	<div id="videowrapper">
+		<VideoBox id="VideoBox"/>
+		<VideoControls id="VideoControls"
+			@onclickPause="playPauseVid"
+			@onclickRandom="this.$store.dispatch('FETCH_RANDOM_ANIME')"
+		/>
+		<VideoInfo id="Videoinfo"/>
+	</div>
 </template>
 
 <script>
@@ -15,25 +15,25 @@ import VideoControls from './VideoControls.vue'
 import VideoInfo from './VideoInfo.vue'
 
 export default {
-  name: 'Video',
-  components: {
-    VideoBox,
-    VideoControls,
-    VideoInfo
-  },
-  mounted() {
-    this.$store.dispatch('FETCH_RANDOM_ANIME')
-  },
-  methods: {
-    playPauseVid() {
-      let video = document.getElementById("videoBox")
-      if (video.paused) {
-        video.play()
-      } else {
-        video.pause()
-      }
-    },
-  }
+	name: 'Video',
+	components: {
+		VideoBox,
+		VideoControls,
+		VideoInfo
+	},
+	mounted() {
+		this.$store.dispatch('FETCH_RANDOM_ANIME')
+	},
+	methods: {
+		playPauseVid() {
+			let video = document.getElementById("videoBox")
+			if (video.paused) {
+				video.play()
+			} else {
+				video.pause()
+			}
+		},
+	}
 }
 </script>
 <style>

@@ -5,7 +5,7 @@ import { io } from "socket.io-client"
 //   })
 
 const socket = io(`wss://op.bots.confa.pp.ua`, {
-  reconnectionDelayMax: 10000,
+	reconnectionDelayMax: 10000,
 })
 
 export default socket
