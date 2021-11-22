@@ -1,6 +1,8 @@
 <template>
   <div class="wrapper">
-    <List/>
+    <!-- <List/> -->
+    <CompList />
+    <ActiveList />
     <Video class="video"/>
     <Search class="search"/>
     <SearchYT class="searchYt"/>
@@ -8,20 +10,24 @@
 </template>
 
 <script>
-import store from './store'
+// import store from './store'
 import Video from './components/video/Video.vue'
 import Search from './components/search/Search.vue'
-import List from './components/list/List.vue'
+// import List from './components/list/List.vue'
 import SearchYT from './components/search/SearchYT.vue'
+import ActiveList from './components/list/ActiveList.vue'
+import CompList from './components/list/CompList.vue'
 
 export default {
   name: 'App',
-  store: store,
+  // store: store,
   components: {
     Video,
     Search,
-    List,
-    SearchYT
+    // List,
+    SearchYT,
+    ActiveList,
+    CompList
   }
 }
 </script>
