@@ -11,17 +11,23 @@
 				<span class="compspan" @click="fetchOpList(list)">
 					<span>{{ list }}</span>
 				</span>
-				<button class="dangerbutton" @click="deleteList(list)">DELETE</button>
+				<!-- <button class="dangerbutton" @click="deleteList(list)">DELETE</button> -->
+				<div>
+					<button class="dangerbutton" @click="confirmCompDelete(list)">DELETE</button>
+					<confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
+				</div>
 			</li>
 		</ul>
 	</div>
 </template>
 
 <script>
+import ConfirmDialogue from "./ConfirmDialogue.vue"
 import Config from "../../config.js"
 import socket from "../../socket.js"
 export default {
 	name: "CompList",
+	components: { ConfirmDialogue },
 	data() {
 		return {
 			
@@ -38,6 +44,17 @@ export default {
 		}
 	},
 	methods: {
+		async confirmCompDelete(list) {
+            const ok = await this.$refs.confirmDialogue.show({
+                title: 'Delete list?',
+                message: 'This will PERMANENTLY delete ' + list,
+                okButton: 'DELETE',
+            })
+            // If you throw an error, the method will terminate here unless you surround it wil try/catch
+            if (ok) {
+				this.deleteList(list)
+            }
+        },
 		// move fetches to store
 		uploadList() {
 			const uploadData = {}
@@ -68,11 +85,11 @@ export default {
 				// this.$store.commit('resetOpIndex')
 				})
 		},
-		// add confirmation window
 		deleteList(list) {
 			fetch(Config.BACKEND_URL + "/" + list, {
 				method: 'delete'
 			})
+			.then(() => alert('You have successfully deleted' + list))
 		}
 	},
 	created() {
