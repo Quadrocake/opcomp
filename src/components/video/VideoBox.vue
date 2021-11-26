@@ -47,10 +47,10 @@ export default {
 		},
 		hotkeys(e) {
 			if (e.target.nodeName !== 'INPUT') {
-				if (e.code == 'ArrowRight') {
+				if (e.code == 'ArrowRight' || e.code == 'KeyL') {
 					this.playNext()
 				} 
-				else if (e.code == 'ArrowLeft') {
+				else if (e.code == 'ArrowLeft' || e.code == 'KeyJ') {
 					this.playPrev()
 				}
 			}
