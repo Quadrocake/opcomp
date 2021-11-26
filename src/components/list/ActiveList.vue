@@ -55,7 +55,7 @@ export default {
   overflow-y: auto;
   width: 100%;
   flex: 1 1 0px;
-  scrollbar-width: none;
+  scrollbar-width: thin;
   border-bottom-style: solid;
   border-color: rgb(99, 53, 53);
 }
@@ -70,8 +70,11 @@ export default {
   margin-bottom: -1px;
   height: 2.5em;
 }
-ul::-webkit-scrollbar {
-  display: none;
+.oplist ul::-webkit-scrollbar {
+  width: 0.5em;
+}
+.oplist ul::-webkit-scrollbar-thumb {
+  background-color: Gray;
 }
 .opspan {
   width: 100%;

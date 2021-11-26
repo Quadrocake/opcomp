@@ -1,7 +1,7 @@
 <template>
 	<div class="complist">
+		<input type="text" v-model="listName" placeholder="List name">
 		<div class="compbutton">
-			<input type="text" v-model="listName" placeholder="List name">
 			<button @click="newList">New</button>
 			<button @click="uploadList">Upload</button>
 			<button @click="fetchCompList">Refresh</button>
@@ -120,8 +120,9 @@ export default {
   padding: 0;
   overflow-y: auto;
   width: 100%;
-  flex: 1 1 0px;
-  scrollbar-width: none;
+  height: 75vh;
+  flex: 1 1 auto;
+  scrollbar-width: thin;
   border-bottom-style: solid;
   border-color: rgb(99, 53, 53);
 }
@@ -157,7 +158,10 @@ export default {
 .complist li:hover {
   background: rgb(99, 53, 53);
 }
-ul::-webkit-scrollbar {
-  display: none;
+.complist ul::-webkit-scrollbar {
+  width: 0.5em;
+}
+.complist ul::-webkit-scrollbar-thumb {
+  background-color: Gray;
 }
 </style>
