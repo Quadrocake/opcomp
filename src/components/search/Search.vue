@@ -1,18 +1,22 @@
 <template>
-<div>
-	<span class="searchBox">
-		<input type="text" v-model="search" placeholder="search...">
-	</span>
-	<span class="searchButton">
-		<button @click="onclickSearch">Search</button>
-	</span>
-	<div v-for="anime in this.animeObjectList" :key="anime.id">
-		<h4>{{ anime.name }}</h4>
-		<div v-for="entry in anime.opList" :key="entry.id">
-		<span @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.type }} {{ entry.title }}</span> 
-		<button @click="this.$store.commit('addActiveListEntry', entry)">+</button>
-		</div>
+<div class="search">
+	<div class="searchBox">
+		<span>
+			<input type="text" v-model="search" placeholder="search...">
+		</span>
+		<span class="searchButton">
+			<button @click="onclickSearch">Search</button>
+		</span>
 	</div>
+	<ul class="searchresults">
+		<li v-for="anime in this.animeObjectList" :key="anime.id">
+			<h4>{{ anime.name }}</h4>
+			<div v-for="entry in anime.opList" :key="entry.id">
+				<span @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.type }} {{ entry.title }}</span> 
+				<button @click="this.$store.commit('addActiveListEntry', entry)">+</button>
+			</div>
+		</li>
+	</ul>
 </div>
 </template>
 
@@ -50,5 +54,29 @@ export default {
 </script>
 
 <style>
-
+.search {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.searchresults {
+	padding: 0;
+	scrollbar-width: thin;
+	overflow-y: auto;
+	flex: 1 1 0px;
+	border-bottom-style: solid;
+	border-color: rgb(99, 53, 53);
+}
+.searchresults li {
+	border-style: solid none;
+	border-width: 1px;
+	border-color: rgb(99, 53, 53);
+	padding-bottom: 1em;
+}
+.searchresults::-webkit-scrollbar {
+  width: 0.5em;
+}
+.searchresults::-webkit-scrollbar-thumb {
+  background-color: Gray;
+}
 </style>

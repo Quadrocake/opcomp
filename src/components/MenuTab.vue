@@ -1,5 +1,5 @@
 <template>
-    <div v-show="isVisible">
+    <div v-show="isVisible" class="tabcontent">
         <slot></slot>
     </div> 
 </template>
@@ -15,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+.tabcontent {
+    height: 100%;
+}
 </style>

@@ -48,11 +48,13 @@ export default {
   grid-column: 3;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .opul {
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
+  
   width: 100%;
   flex: 1 1 0px;
   scrollbar-width: thin;

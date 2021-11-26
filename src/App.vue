@@ -1,28 +1,26 @@
 <template>
-  <!-- <div class="topbar">
-    <Search class="search"/>
-    <SearchYT class="searchYt"/>
-  </div> -->
-  <div class="wrapper">
-    <!-- <List/> -->
+  <!-- <div class="wrapper">
     <LeftMenu class="leftmenu"/>
-    <!-- <CompList /> -->
     <ActiveList />
     <Video class="video"/>
-    
+  </div> -->
+  <div class="wrapper">
+    <div class="column col1">
+      <LeftMenu class="leftmenu"/>
+    </div>
+    <div class="column col2">
+      <Video class="video"/>
+    </div>
+    <div class="column col3">
+      <ActiveList />
+    </div>
   </div>
 </template>
 
 <script>
-// import store from './store'
-import Video from './components/video/Video.vue'
-// import Search from './components/search/Search.vue'
-// import List from './components/list/List.vue'
-// import SearchYT from './components/search/SearchYT.vue'
-import ActiveList from './components/list/ActiveList.vue'
-// import CompList from './components/list/CompList.vue'
-
 import LeftMenu from './components/menu/LeftMenu.vue'
+import Video from './components/video/Video.vue'
+import ActiveList from './components/list/ActiveList.vue'
 
 export default {
   name: 'App',
@@ -43,21 +41,34 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
   background-color: #2a2a2b;
+  color: Silver;
   font-size: calc(0.6rem + 1vmin);
-}
-.topbar {
-  background-color: #202020;
-  height: 3rem;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
 .wrapper {
-  display: grid;
-  /* grid-template-columns: 350px 1fr 350px; */
-  grid-template-columns: 20% 1fr 20%;
-  grid-template-rows: 90vh 1fr;
-  
-  font-family: 'Roboto', sans-serif;
-  color: Silver;
+  display: flex;
+  height: 100vh;
 }
+.column {
+  max-height: 100%;
+}
+.col1 {
+  /* height: 100vh; */
+  width: 20%;
+}
+.col2 {
+  width: 60%;
+}
+.col3 {
+  width: 20%;
+}
+/* .wrapper {
+  display: grid;
+
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: 90vh 1fr; 
+} */
 button {
   border: none;
   background: #353839;
@@ -76,13 +87,12 @@ input {
   padding: 0;
   padding-left: 0.10rem;
 }
-.video {
+/* .video {
   grid-row: 1;
   grid-column: 2;
-  /* margin: 10px; */
-}
-.leftmenu {
-  display: contents;
+  margin: 10px;
+} */
+/* .leftmenu {
   grid-column: 1;
 }
 .search {
@@ -91,5 +101,5 @@ input {
 .searchYt {
   grid-row: 2;
   grid-column: 3;
-}
+} */
 </style>

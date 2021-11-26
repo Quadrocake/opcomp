@@ -111,17 +111,17 @@ export default {
   background: lightcoral;
 }
 .complist {
-  grid-column: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .compul {
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
   width: 100%;
-  height: 75vh;
-  flex: 1 1 auto;
+  
+  flex: 1 1 0px;
   scrollbar-width: thin;
   border-bottom-style: solid;
   border-color: rgb(99, 53, 53);
@@ -133,7 +133,7 @@ export default {
   border-style: solid none;
   border-width: 1px;
   border-color: rgb(99, 53, 53);
-  background: #2a2a2b;
+  /* background: #2a2a2b; */
   margin-bottom: -1px;
   height: 2.5em;
 }

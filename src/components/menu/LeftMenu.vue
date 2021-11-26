@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="leftmenu">
         <menu-tabs :titles="tabTitles" :menuTabs="tabTitles">
-            <template v-slot:Playlists>
-                <menu-tab>
+            <template v-slot:Playlists >
+                <menu-tab id="complisttab">
                     <CompList />
                 </menu-tab>
             </template>
@@ -44,5 +44,10 @@ export default {
 </script>
 
 <style>
-
+#complisttab {
+    height: 100%;
+}
+.leftmenu {
+    height: 100%;
+}
 </style>

@@ -1,16 +1,20 @@
 <template>
-	<div>
-		<span class="searchBox">
-			<input type="text" v-model="searchQuery" placeholder="youtube...">
-		</span>
-		<span class="searchButton">
-			<button @click="onclickSearchYT">Search</button>
-		</span>
-		<div class="searchContainer" v-for="entry in this.ytObjectList" :key="entry.opUrl">
-			<img class="searchRes" :src="entry.thumbnail" alt="no img">
-			<p @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.title }}</p> 
-			<button @click="this.$store.commit('addActiveListEntry', entry)">Add to list</button>
+	<div class="search">
+		<div>
+			<span class="searchBox">
+				<input type="text" v-model="searchQuery" placeholder="youtube...">
+			</span>
+			<span class="searchButton">
+				<button @click="onclickSearchYT">Search</button>
+			</span>
 		</div>
+		<ul class="searchresults">
+			<li class="searchContainer" v-for="entry in this.ytObjectList" :key="entry.opUrl">
+				<img class="searchRes" :src="entry.thumbnail" alt="no img">
+				<p @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.title }}</p> 
+				<button @click="this.$store.commit('addActiveListEntry', entry)">Add to list</button>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -43,6 +47,7 @@ export default {
 <style>
 .searchRes {
 	float: left;
+	/* vertical-align: bottom; */
 }
 .searchContainer {
 	overflow: auto

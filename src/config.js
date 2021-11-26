@@ -9,8 +9,8 @@ const Config = {
 		"&fields[animethemeentry]=spoiler" + 
 		"&include=animethemes.animethemeentries.videos,animethemes.song",
 	BASE_SEARCH_URL:  "https://staging.animethemes.moe/api/search?fields[search]=anime" + 
-		"&page[limit]=5&filter[has]=animethemeentries",
-	BASE_YT_SEARCH_URL: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDxgb25TunfttfRHSG1zhOGxTjNh-vvFEA&maxResults=5&q="
+		"&page[limit]=10&filter[has]=animethemeentries",
+	BASE_YT_SEARCH_URL: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDxgb25TunfttfRHSG1zhOGxTjNh-vvFEA&maxResults=10&q="
 }
 export default Config
   

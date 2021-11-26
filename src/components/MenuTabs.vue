@@ -1,8 +1,8 @@
 <template>
 <div class="tabs">
-    <ul class="tabsheader">
-        <li v-for="(tab, index) in this.titles" :key="index" @click="selectTab(index)">{{ tab }}</li>
-    </ul>
+    <div class="tabsheader">
+        <div v-for="(tab, index) in this.titles" :key="index" @click="selectTab(index)" :class='{"selected": (index == this.selectedTab)}'>{{ tab }}</div>
+    </div>
     <menu-tab v-for="(tabName, index) in menuTabs" :key="tabName" :ref="`tab-${index}`">
         <slot :name="tabName"></slot>
     </menu-tab>
@@ -16,6 +16,11 @@ export default {
     components: {
         MenuTab
     },
+    data() {
+        return {
+            selectedTab: 0
+        }
+    },
     props: {
         titles: Array,
         menuTabs: Array
@@ -27,6 +32,7 @@ export default {
         selectTab (index) {
             this.menuTabs.forEach((tab,tabIndex) => {
                 this.$refs[`tab-${tabIndex}`].isVisible = (tabIndex === index);
+                this.selectedTab = index
             })
         }
     }
@@ -34,17 +40,31 @@ export default {
 </script>
 
 <style>
-.tabsheader {
-    list-style: none;
-    padding: 0;
+.tabs {
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
 }
-.tabsheader li {
+.tabsheader {
+    display: flex;
+    justify-content: space-evenly;
+}
+.tabsheader div {
+    padding: 0.5em;
+    border-style: none none solid none;
+    border-width: 2px;
+    border-color: #2a2a2b;
+}
+/* .tabsheader li {
     padding: 0.3em;
     margin: 0.5em;
-}
-.tabsheader li:hover {
+} */
+.tabsheader div:hover {
     background-color: gray;
     cursor: pointer;
+}
+.selected {
+    border-color: gray !important;
 }
 </style>
