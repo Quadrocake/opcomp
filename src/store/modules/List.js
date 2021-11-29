@@ -1,8 +1,11 @@
+var Chance = require('chance');
+
 const List = {
 	state: () => ({
 		compList: [],
 		activeList: [],
-		activeListName: ""
+		activeListName: "",
+		randomSeed: null
 	}),
 
 	getters: {
@@ -25,13 +28,18 @@ const List = {
 			state.activeList = state.activeList.concat(value)
 		},
 		shuffleActiveList (state) {
+			var random = new Chance(state.randomSeed);
+
 			let currentIndex = state.activeList.length, randomIndex
 			while (currentIndex != 0) {
-				randomIndex = Math.floor(Math.random() * currentIndex)
+				randomIndex = Math.floor(random.random() * currentIndex)
 				currentIndex--
 		
 				[state.activeList[currentIndex], state.activeList[randomIndex]] = [state.activeList[randomIndex], state.activeList[currentIndex]]
 			}
+		},
+		updateRandomSeed (state,value) {
+			state.randomSeed = value
 		},
 		addActiveListEntry (state, value) {
 			state.activeList.push(value)

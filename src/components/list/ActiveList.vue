@@ -4,8 +4,9 @@
 			{{ this.$store.state.List.activeListName }}
 		</span>
 		<span>
+      <button class="opbutton" @click="this.oplistHidden = !this.oplistHidden">Hide</button>
 			<button class="opbutton" @click="this.$store.commit('shuffleActiveList')">Random</button>
-			<button class="opbutton" @click="this.oplistHidden = !this.oplistHidden">Hide</button>
+      <input class="seedinput" type="text" @input="updateRandomSeed">
 		</span>
 		<ul v-show="!this.oplistHidden" class="opul">
 			<li class="opli" v-for="(entry, index) in this.$store.state.List.activeList" :key="index">
@@ -30,11 +31,19 @@ export default {
 		return {
 			oplistHidden: false
 		}
-	}
+	},
+  methods: {
+    updateRandomSeed (e) {
+      this.$store.commit('updateRandomSeed', e.target.value)
+    }
+  }
 }
 </script>
 
 <style>
+.seedinput {
+  width: 5em;
+}
 .oplist li:hover {
   background: rgb(99, 53, 53);
 }
