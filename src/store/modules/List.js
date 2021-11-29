@@ -9,11 +9,20 @@ const List = {
 
 	},
 	actions: {
-
+		UPDATE_ACTIVE_LIST ({commit}, {name, data}) {
+			commit('updateActiveListData', data)
+			commit('updateActiveListName', name)
+		}
 	},
 	mutations: {
-		updateActiveList (state, value) {
+		updateActiveListData (state, value) {
 			state.activeList = value
+		},
+		updateActiveListName (state, value) {
+			state.activeListName = value
+		},
+		mergeWithActiveList (state, value) {
+			state.activeList = state.activeList.concat(value)
 		},
 		shuffleActiveList (state) {
 			let currentIndex = state.activeList.length, randomIndex
@@ -32,9 +41,6 @@ const List = {
 		},
 		updateCompList (state, value) {
 			state.compList = value
-		},
-		updateListName (state, value) {
-			state.activeListName = value
 		}
 	}
 }

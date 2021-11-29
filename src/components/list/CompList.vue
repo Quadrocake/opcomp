@@ -39,7 +39,7 @@ export default {
 				return this.$store.state.List.activeListName
 			},
 			set (value) {
-				this.$store.commit('updateListName', value)
+				this.$store.commit('updateActiveListName', value)
 			}
 		}
 	},
@@ -55,7 +55,6 @@ export default {
 				this.deleteList(list)
             }
         },
-		// move fetches to store
 		uploadList() {
 			const uploadData = {}
 			uploadData['data'] = this.$store.state.List.activeList
@@ -68,8 +67,7 @@ export default {
 			})
 		},
 		newList() {
-			this.$store.commit('updateListName', "")
-			this.$store.commit('updateActiveList', [])
+			this.$store.dispatch('UPDATE_ACTIVE_LIST', {name: "", data: []})
 		},
 		fetchCompList () {
 			fetch(Config.BACKEND_URL)
@@ -79,9 +77,11 @@ export default {
 		fetchOpList(list) {
 			fetch(Config.BACKEND_URL + "/" + list)
 			.then(response => response.json())
-			.then(json => {this.$store.commit('updateActiveList', json['data']); 
+			.then(json => {
+				this.$store.dispatch('UPDATE_ACTIVE_LIST', {name: list, data: json['data']})
+
 				console.log(json['data'])
-				this.$store.commit('updateListName', list)
+				
 				// this.$store.commit('resetOpIndex')
 				})
 		},

@@ -39,6 +39,6 @@ export default {
 <style>
 #videowrapper {
   text-align: center;
-  height: 600px;
+  /* height: 600px; */
 }
 </style>

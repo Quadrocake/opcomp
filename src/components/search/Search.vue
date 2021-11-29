@@ -10,9 +10,13 @@
 	</div>
 	<ul class="searchresults">
 		<li v-for="anime in this.animeObjectList" :key="anime.id">
-			<h4>{{ anime.name }}</h4>
+			<h4>
+				{{ anime.name }}
+				<button @click="this.$store.commit('mergeWithActiveList', anime.opList)">Add to list</button>
+				<button @click="this.$store.dispatch('UPDATE_ACTIVE_LIST', {name: anime.name, data: anime.opList})">Create list</button>
+			</h4>
 			<div v-for="entry in anime.opList" :key="entry.id">
-				<span @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.type }} {{ entry.title }}</span> 
+				<span class="searchspan" @click="this.$store.dispatch('UPDATE_CURRENTLY_PLAYING', {theme: entry})">{{ entry.type }} {{ entry.title }}</span> 
 				<button @click="this.$store.commit('addActiveListEntry', entry)">+</button>
 			</div>
 		</li>
@@ -48,7 +52,7 @@ export default {
 					this.animeObjectList.push(animeObj)
 				}
 			})
-		}
+		},
 	}
 }
 </script>
@@ -72,6 +76,14 @@ export default {
 	border-width: 1px;
 	border-color: rgb(99, 53, 53);
 	padding-bottom: 1em;
+	margin-bottom: -1px;
+}
+.searchspan:hover {
+	background: rgb(99, 53, 53);
+	cursor: pointer;
+}
+.search button:hover {
+	background: lightgray;
 }
 .searchresults::-webkit-scrollbar {
   width: 0.5em;
