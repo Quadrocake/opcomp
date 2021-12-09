@@ -16,6 +16,11 @@
                     <SearchYT />
                 </menu-tab>
             </template>
+            <template v-slot:Radio>
+                <menu-tab>
+                    <Radios />
+                </menu-tab>
+            </template>
         </menu-tabs>
     </div>
 </template>
@@ -26,6 +31,7 @@ import MenuTab from "../MenuTab.vue"
 import CompList from "../list/CompList.vue"
 import Search from "../search/Search.vue"
 import SearchYT from "../search/SearchYT.vue"
+import Radios from "../video/Radios.vue"
 
 export default {
     components: {
@@ -33,11 +39,12 @@ export default {
         MenuTab,
         CompList,
         Search,
-        SearchYT
+        SearchYT,
+        Radios
     },
     data () {
         return {
-            tabTitles: ["Playlists","Search","SearchYT"]
+            tabTitles: ["Playlists","Search","SearchYT","Radio"]
         }
     }
 }

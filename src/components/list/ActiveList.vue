@@ -6,7 +6,7 @@
 		<span>
       <button class="opbutton" @click="this.oplistHidden = !this.oplistHidden">Hide</button>
 			<button class="opbutton" @click="this.$store.commit('shuffleActiveList')">Random</button>
-      <input class="seedinput" type="text" @input="updateRandomSeed">
+      <input class="seedinput" type="text" @input="updateRandomSeed" placeholder="seed">
 		</span>
 		<ul v-show="!this.oplistHidden" class="opul">
 			<li class="opli" v-for="(entry, index) in this.$store.state.List.activeList" :key="index">

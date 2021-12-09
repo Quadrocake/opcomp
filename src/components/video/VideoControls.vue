@@ -8,10 +8,10 @@
 		<button @click="playNext">Next</button>
 		<button @click="DT" :class="{toggled: isDt}">DT</button>
 		<button @click="NC" :class="{toggled: isNc}">NC</button>
-		<input id="yearStartInput" class="yearInput" type="number" v-model="animeStartYear">
+		<input id="yearStartInput" class="yearInput" type="number" v-model="animeStartYear" placeholder="from">
 		<button @click="resetStartYear">X</button>
 		<span> - </span>
-		<input id="yearEndInput" class="yearInput" type="number" v-model="animeEndYear">
+		<input id="yearEndInput" class="yearInput" type="number" v-model="animeEndYear" placeholder="to">
 		<button @click="resetEndYear">X</button>
 		<select>
 			<option disabled value="Type"></option>
