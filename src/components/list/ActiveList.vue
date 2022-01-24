@@ -6,6 +6,8 @@
 		<span>
       <button class="opbutton" @click="this.oplistHidden = !this.oplistHidden">Hide</button>
 			<button class="opbutton" @click="this.$store.commit('shuffleActiveList')">Random</button>
+      <button class="opbutton" @click="this.$store.commit('sortActiveListOpAlphabet')">A↓ (OP)</button>
+      <button class="opbutton" @click="this.$store.commit('sortActiveListAnimeAlphabet')">A↓ (Anime)</button>
       <input class="seedinput" type="text" @input="updateRandomSeed" placeholder="seed">
 		</span>
 		<ul v-show="!this.oplistHidden" class="opul">
@@ -102,7 +104,7 @@ export default {
 }
 .oplist button {
   background: #2a2a2b;
-  height: 100%;
+  height: 1.5rem;
   border: none;
 }
 .index {

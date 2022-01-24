@@ -38,6 +38,12 @@ const List = {
 				[state.activeList[currentIndex], state.activeList[randomIndex]] = [state.activeList[randomIndex], state.activeList[currentIndex]]
 			}
 		},
+		sortActiveListOpAlphabet (state) {
+			state.activeList.sort((a, b) => a.title.localeCompare(b.title))
+		},
+		sortActiveListAnimeAlphabet (state) {
+			state.activeList.sort((a, b) => a.anime.localeCompare(b.anime))
+		},
 		updateRandomSeed (state,value) {
 			state.randomSeed = value
 		},
