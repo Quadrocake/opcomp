@@ -27,7 +27,8 @@ export default {
 	data() {
 		return {
 			isDt: false,
-			isNc: false
+			isNc: false,
+			isFullscreen: false
 		}
 	},
 	computed: {
@@ -59,6 +60,24 @@ export default {
 				}
 				else if (e.code == 'KeyK') {
 					this.$emit('onclickPause')
+				}
+				else if (e.code == 'KeyF') {
+					var videoElement  = document.getElementById('videoBox')
+					if (!document.mozFullScreen && !document.webkitIsFullScreen) {
+						if (videoElement.mozRequestFullScreen) {
+							videoElement.mozRequestFullScreen();
+						} 
+						else {
+							videoElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+						}
+					} 
+					else {
+						if (document.mozCancelFullScreen) {
+							document.mozCancelFullScreen();
+						} else {
+							document.webkitCancelFullScreen();
+						}
+					}
 				}
 			}
 		},
