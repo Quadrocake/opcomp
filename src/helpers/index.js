@@ -23,6 +23,7 @@ export function parseYtJson (json) {
     for (const item in json) {
         const animeObj = {}
         animeObj['sourse'] = "yt"
+        animeObj['anime'] = "YouTube"
         animeObj['opUrl'] = json[item]['id']['videoId']
         animeObj['title'] = json[item]['snippet']['title']
         animeObj['thumbnail'] = json[item]['snippet']['thumbnails']['default']['url']

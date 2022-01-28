@@ -13,6 +13,15 @@ const List = {
 	},
 	actions: {
 		UPDATE_ACTIVE_LIST ({commit}, {name, data}) {
+			
+			// fix for yt videos missing anime tag, breaking sorting. Can remove once all yt videos will be reuploaded with the tag
+			for (const entry in data) {
+				console.log(entry)
+				if (data[entry]['sourse'] == "yt") {
+					data[entry]['anime'] = "YouTube"
+				}
+			}
+
 			commit('updateActiveListData', data)
 			commit('updateActiveListName', name)
 		}
