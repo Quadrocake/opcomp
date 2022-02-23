@@ -33,7 +33,7 @@ const Themes = {
 	},
 	actions: {
 		FETCH_RANDOM_ANIME ({state, getters, commit, dispatch}) {
-			const RANDOM_ANIME_REQUEST = Config.BASE_RANDOM_ANIME_REQUEST + Config.ANIME_FIELDS + getters.GET_FILTER_FIELDS
+			const RANDOM_ANIME_REQUEST = Config.BASE_RANDOM_ANIME_REQUEST + Config.ANIME_FIELDS + Config.RANDOM_INCLUDE + getters.GET_FILTER_FIELDS
 			
 			fetch(RANDOM_ANIME_REQUEST)
 			.then(response => response.json())

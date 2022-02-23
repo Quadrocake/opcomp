@@ -38,7 +38,7 @@ export default {
 	},
 	methods: {
 		onclickSearch() {
-			const SEARCH_REQUEST = Config.BASE_SEARCH_URL + Config.ANIME_FIELDS + "&q=" + this.search
+			const SEARCH_REQUEST = Config.BASE_SEARCH_URL + Config.ANIME_FIELDS + Config.SEARCH_INCLUDE + "&q=" + this.search
 			this.animeObjectList = []
 
 			fetch(SEARCH_REQUEST)
