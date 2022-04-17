@@ -23,10 +23,10 @@ const Themes = {
 		GET_FILTER_FIELDS (state) {
 			let filter = ''
 			if (state.filters.animeStartYear) {
-				filter = filter + '&filter[year][gte]=' + state.filters.animeStartYear
+				filter = filter + '&filter[year-gte]=' + state.filters.animeStartYear
 			}
 			if (state.filters.animeEndYear) {
-				filter = filter + '&filter[year][lte]=' + state.filters.animeEndYear
+				filter = filter + '&filter[year-lte]=' + state.filters.animeEndYear
 			}
 			return filter
 		}
