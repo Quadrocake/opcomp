@@ -1,6 +1,6 @@
 const Config = {
 	BACKEND_URL: "https://op.bots.confa.pp.ua/api",
-	BASE_RANDOM_ANIME_REQUEST: "https://staging.animethemes.moe/api/anime?sort=random" + 
+	BASE_RANDOM_ANIME_REQUEST: "https://beta.animethemes.moe/api/anime?sort=random" + 
 		"&page[size]=1",
 	ANIME_FIELDS: "&fields[anime]=id,name,year" + 
 		"&fields[video]=id,link" + 
@@ -9,7 +9,7 @@ const Config = {
 		"&fields[animethemeentry]=spoiler",
 	RANDOM_INCLUDE: "&include=animethemes.song,animethemes.animethemeentries.videos",
 	SEARCH_INCLUDE: "&include[anime]=animethemes.song,animethemes.animethemeentries.videos",
-	BASE_SEARCH_URL:  "https://staging.animethemes.moe/api/search?fields[search]=anime" + 
+	BASE_SEARCH_URL:  "https://beta.animethemes.moe/api/search?fields[search]=anime" + 
 		"&page[limit]=10",
 	BASE_YT_SEARCH_URL: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDxgb25TunfttfRHSG1zhOGxTjNh-vvFEA&maxResults=10&q="
 }
