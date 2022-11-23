@@ -1,5 +1,5 @@
 const Config = {
-	BACKEND_URL: "https://op.bots.confa.pp.ua/api",
+	BACKEND_URL: "https://op.727.pp.ua/api",
 	BASE_RANDOM_ANIME_REQUEST: "https://beta.animethemes.moe/api/anime?sort=random" + 
 		"&page[size]=1",
 	ANIME_FIELDS: "&fields[anime]=id,name,year" + 
