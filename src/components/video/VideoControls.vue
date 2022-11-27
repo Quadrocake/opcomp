@@ -6,6 +6,7 @@
 		<button @click="this.$store.commit('addActiveListEntry', this.$store.state.Themes.video.themeObject)">Add to list</button>
 		<button @click="playPrev">Prev</button>
 		<button @click="playNext">Next</button>
+		<button @click="triggerAudioOnly" :class="{toggled: isAudio}">Audio</button>
 		<button @click="DT" :class="{toggled: isDt}">DT</button>
 		<button @click="NC" :class="{toggled: isNc}">NC</button>
 		<input id="yearStartInput" class="yearInput" type="number" v-model="animeStartYear" placeholder="from">
@@ -28,7 +29,8 @@ export default {
 		return {
 			isDt: false,
 			isNc: false,
-			isFullscreen: false
+			isFullscreen: false,
+			isAudio: false
 		}
 	},
 	computed: {
@@ -95,6 +97,10 @@ export default {
 				console.log("play prev")
 				this.$store.dispatch('PLAY_PREV')
 			}
+		},
+		triggerAudioOnly () {
+			this.isAudio = !this.isAudio
+			this.$store.dispatch('TRIGGER_AUDIO_ONLY', { isAudio: this.isAudio })
 		},
 		DT () {
 			this.isDt = !this.isDt

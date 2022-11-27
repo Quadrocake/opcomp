@@ -6,6 +6,7 @@ const Themes = {
 	state: () => ({
 		opIndex: "",
 		ytubePlaying: false,
+		audioOnly: false,
 		animeThemesList: [],
 		playHistory: [],
 		video: {
@@ -66,6 +67,9 @@ const Themes = {
 		CHANGE_TYPE_FILTER ({ commit }, payload) {
 			commit('updateTypeFilter', payload.value)
 		},
+		TRIGGER_AUDIO_ONLY ({ commit }, payload) {
+			commit('updateAudioOnly', payload.isAudio)
+		},
 		PLAY_NEXT ({state, commit, dispatch, rootState}) {
 			console.log(rootState.List.activeList[state.opIndex])
 			commit('incrementOpIndex')
@@ -97,7 +101,13 @@ const Themes = {
 		updateVideoUrl (state, theme) {
 			if (theme.sourse == "themes") {
 				state.ytubePlaying = false
-				state.video.themeUrl =  theme.opUrl.replace('staging.', '')
+				if (state.audioOnly) {
+					// because it works
+					state.video.themeUrl =  theme.opUrl.replace('v.animethemes.', 'a.animethemes.').replace('.webm', '.ogg')
+				}
+				else {
+					state.video.themeUrl =  theme.opUrl
+				}
 			}
 			else if (theme.sourse == "yt") {
 				state.ytubePlaying = true
@@ -130,6 +140,9 @@ const Themes = {
 		},
 		updateTypeFilter (state, value) {
 			state.filters.type = value
+		},
+		updateAudioOnly (state, value) {
+			state.audioOnly = value
 		}
 	}
 }
