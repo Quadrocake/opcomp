@@ -32,6 +32,23 @@ export function parseYtJson (json) {
     }
     return parsedYtSearch
 }
+export function parseMalJson (json) {
+    const parsedMalList = []
+
+    for (const item in json) {
+        for (let counter = 0; counter < json[item]['themes'].length; counter++) {
+            const animeObj = {}
+            animeObj['sourse'] = "themes"
+            animeObj['anime'] = json[item]['name']
+            animeObj['year'] = json[item]['year']
+            animeObj['title'] = json[item]['themes'][counter]['themeName']
+            animeObj['opUrl'] = json[item]['themes'][counter]['mirror']['mirrorURL']
+
+            parsedMalList.push(animeObj)
+        }
+    }
+    return parsedMalList
+}
 export function filterAnimeThemesByType (animeThemes, type) {
     const filteredList = []
     if (type == 0) {

@@ -5,6 +5,8 @@
 			<button @click="newList">New</button>
 			<button @click="uploadList">Upload</button>
 			<button @click="fetchCompList">Refresh</button>
+			<input type="text" v-model="malJson" placeholder="json">
+			<button @click="readMalJson">Parse</button>
 		</div>
 		<ul class="compul">
 			<li class="compli" v-for="(list, index) in this.$store.state.List.compList" :key="index">
@@ -25,12 +27,14 @@
 import ConfirmDialogue from "./ConfirmDialogue.vue"
 import Config from "../../config.js"
 import socket from "../../socket.js"
+import { parseMalJson } from "../../helpers"
+
 export default {
 	name: "CompList",
 	components: { ConfirmDialogue },
 	data() {
 		return {
-			
+			malJson: ""
 		}
 	},
 	computed: {
@@ -90,6 +94,9 @@ export default {
 				method: 'delete'
 			})
 			.then(() => alert('You have successfully deleted' + list))
+		},
+		readMalJson() {
+			this.$store.dispatch('UPDATE_ACTIVE_LIST', {name: "mal", data: parseMalJson(JSON.parse(this.malJson))})
 		}
 	},
 	created() {
