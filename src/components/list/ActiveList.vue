@@ -111,7 +111,7 @@ export default {
 }
 .index {
   width: calc(1.2rem + 1vmin);
-  color: #353839;
+  color: Gray;;
   font-size: calc(0.40rem + 1vmin);
 }
 #listName {
