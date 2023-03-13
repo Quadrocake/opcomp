@@ -3,6 +3,7 @@ var Chance = require('chance');
 const List = {
 	state: () => ({
 		compList: [],
+		copiedList: [],
 		activeList: [],
 		activeListName: "",
 		randomSeed: null
@@ -64,6 +65,12 @@ const List = {
 		},
 		updateCompList (state, value) {
 			state.compList = value
+		},
+		storeCopiedList (state) {
+			state.copiedList = state.activeList
+		},
+		mergeCopiedList (state) {
+			state.activeList = state.activeList.concat(state.copiedList)
 		}
 	}
 }

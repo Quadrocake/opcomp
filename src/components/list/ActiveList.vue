@@ -6,6 +6,8 @@
 		<span>
       <button class="opbutton" @click="this.oplistHidden = !this.oplistHidden">Hide</button>
 			<button class="opbutton" @click="this.$store.commit('shuffleActiveList')">Random</button>
+      <button class="opbutton" @click="this.$store.commit('storeCopiedList')">Copy</button>
+      <button class="opbutton" @click="this.$store.commit('mergeCopiedList')">Paste</button>
       <button class="opbutton" @click="this.$store.commit('sortActiveListOpAlphabet')">A↓ (OP)</button>
       <button class="opbutton" @click="this.$store.commit('sortActiveListAnimeAlphabet')">A↓ (Anime)</button>
       <input class="seedinput" type="text" @input="updateRandomSeed" placeholder="seed">
