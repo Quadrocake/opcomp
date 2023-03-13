@@ -11,9 +11,10 @@
       <button class="opbutton" @click="this.$store.commit('sortActiveListOpAlphabet')">A↓ (OP)</button>
       <button class="opbutton" @click="this.$store.commit('sortActiveListAnimeAlphabet')">A↓ (Anime)</button>
       <input class="seedinput" type="text" @input="updateRandomSeed" placeholder="seed">
+      <input v-model="searchQuery" class="searchQuery" type="text" placeholder="search...">
 		</span>
 		<ul v-show="!this.oplistHidden" class="opul">
-			<li class="opli" v-for="(entry, index) in this.$store.state.List.activeList" :key="index">
+			<li class="opli" v-for="(entry, index) in filteredList" :key="index">
 				<span v-bind:class="{ currentlyPlaying: (this.$store.state.Themes.opIndex == index && this.$store.state.Themes.video.themeObject.opUrl == entry.opUrl) }" 
 					class="index">
 					{{ index + 1}}
@@ -33,12 +34,21 @@ export default {
 	name: "ActiveList",
 	data() {
 		return {
-			oplistHidden: false
+			oplistHidden: false,
+      searchQuery: ''
 		}
 	},
   methods: {
     updateRandomSeed (e) {
       this.$store.commit('updateRandomSeed', e.target.value)
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.$store.state.List.activeList.filter(item => {
+        return item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                item.anime.toLowerCase().includes(this.searchQuery.toLowerCase())
+      })
     }
   }
 }
