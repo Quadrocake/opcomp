@@ -1,4 +1,4 @@
-var Chance = import('chance');
+import { Chance } from 'chance';
 
 const List = {
 	state: () => ({
