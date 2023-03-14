@@ -1,4 +1,4 @@
-var Chance = require('chance');
+var Chance = import('chance');
 
 const List = {
 	state: () => ({

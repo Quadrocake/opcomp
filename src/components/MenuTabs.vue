@@ -3,7 +3,7 @@
     <div class="tabsheader">
         <div v-for="(tab, index) in this.titles" :key="index" @click="selectTab(index)" :class='{"selected": (index == this.selectedTab)}'>{{ tab }}</div>
     </div>
-    <menu-tab v-for="(tabName, index) in menuTabs" :key="tabName" :ref="`tab-${index}`">
+    <menu-tab v-for="(tabName) in menuTabs" :key="tabName" ref="tabs">
         <slot :name="tabName"></slot>
     </menu-tab>
 </div>
@@ -31,7 +31,7 @@ export default {
     methods: {
         selectTab (index) {
             this.menuTabs.forEach((tab,tabIndex) => {
-                this.$refs[`tab-${tabIndex}`].isVisible = (tabIndex === index);
+                this.$refs.tabs[tabIndex].isVisible = (tabIndex === index);
                 this.selectedTab = index
             })
         }

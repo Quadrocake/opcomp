@@ -2,31 +2,32 @@
   "name": "opcomp",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "chance": "^1.1.8",
-    "core-js": "^3.6.5",
-    "socket.io": "^4.2.0",
-    "socket.io-client": "^4.2.0",
-    "vue": "^3.0.0",
-    "vue-3-socket.io": "^1.0.4",
+    "chance": "^1.1.11",
+    "core-js": "^3.29.1",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+    "vue": "^3.2.47",
+    "vue-3-socket.io": "^1.0.5",
     "vue-socket.io": "^3.0.10",
-    "vuex": "^4.0.2",
-    "ws": "^8.2.2",
-    "youtube-player": "^5.5.2"
+    "vuex": "^4.1.0",
+    "ws": "^8.13.0",
+    "youtube-player": "^5.6.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "^4.5.13",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.2.47",
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint": "^8.36.0",
+    "eslint-plugin-vue": "^7.20.0"
   },
   "eslintConfig": {
     "root": true,
@@ -38,7 +39,7 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     },
     "rules": {}
   },
