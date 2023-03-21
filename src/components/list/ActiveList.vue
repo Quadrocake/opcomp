@@ -62,7 +62,7 @@ export default {
       return this.$store.state.List.activeList.filter(item => {
         return (item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
                 item.anime.toLowerCase().includes(this.searchQuery.toLowerCase())) &&
-                item.type.includes(this.showFilter)
+                item.type?.includes(this.showFilter)
       })
     }
   }
