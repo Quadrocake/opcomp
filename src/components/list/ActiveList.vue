@@ -12,6 +12,9 @@
       <button class="opbutton" @click="this.$store.commit('sortActiveListAnimeAlphabet')">A↓ (Anime)</button>
       <input class="seedinput" type="text" @input="updateRandomSeed" placeholder="seed">
       <input v-model="searchQuery" class="searchQuery" type="text" placeholder="search...">
+      <button class="opbutton" @click="showOnlyOP">OP</button>
+      <button class="opbutton" @click="showOnlyED">ED</button>
+      <button class="opbutton" @click="resetShowFilter">reset</button>
 		</span>
 		<ul v-show="!this.oplistHidden" class="opul">
 			<li class="opli" v-for="(entry, index) in filteredList" :key="index">
@@ -35,19 +38,31 @@ export default {
 	data() {
 		return {
 			oplistHidden: false,
-      searchQuery: ''
+      searchQuery: '',
+      showFilter: ''
 		}
 	},
   methods: {
     updateRandomSeed (e) {
       this.$store.commit('updateRandomSeed', e.target.value)
+    },
+    showOnlyOP() {
+      this.showFilter = 'OP'
+    },
+    showOnlyED() {
+      this.showFilter = 'ED'
+    },
+    resetShowFilter() {
+      this.showFilter = ''
     }
   },
   computed: {
     filteredList() {
+      console.log(this.showFilter)
       return this.$store.state.List.activeList.filter(item => {
-        return item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                item.anime.toLowerCase().includes(this.searchQuery.toLowerCase())
+        return (item.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                item.anime.toLowerCase().includes(this.searchQuery.toLowerCase())) &&
+                item.type.includes(this.showFilter)
       })
     }
   }
