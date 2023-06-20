@@ -7,7 +7,18 @@
 	<div v-if="this.$store.state.Themes.video.themeObject">
 		<p class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['anime'] }}</p> &nbsp;
 		<p class="videoInfoLine" v-if="this.$store.state.Themes.video.themeObject['type']">{{ this.$store.state.Themes.video.themeObject['type'] }}</p> &nbsp;
-		<p class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['title'] }}</p> 
+		<p class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['title'] }}</p> <br />
+		<div class="videoInfoLine" v-if="this.$store.state.Themes.video.themeObject['artists']">
+			<div class="videoInfoLine smallerFont">Artist: </div> 
+			<!-- <div class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['artists'] }}</div> -->
+			<li v-for="artist in this.$store.state.Themes.video.themeObject['artists']" :key="artist">
+				{{ artist }}
+			</li>
+		</div>
+		<div v-if="this.$store.state.Themes.video.themeObject['year']">
+			<div class="videoInfoLine smallerFont">Year: </div> 
+			<div class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['year'] }}</div>
+		</div>
 	</div>
 	<div>
 		<ul v-if="showHistory" id="historylist">
@@ -61,5 +72,9 @@ export default {
 .opline:hover {
   background: rgb(99, 53, 53);
   cursor: pointer;
+}
+.smallerFont {
+  font-size: calc(0.40rem + 1vmin);
+  color: Gray;
 }
 </style>

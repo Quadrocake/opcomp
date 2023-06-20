@@ -12,6 +12,16 @@ export function parseAnimeJson (json, index) {
         themeJson['animeId'] = json['anime'][index]['id']
         themeJson['opUrl'] = json['anime'][index]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['link']
         themeJson['opId'] = json['anime'][index]['animethemes'][counter]['animethemeentries'][0]['videos'][0]['id']
+        if (json['anime'][index]['animethemes'][counter]['song']['artists'][0] != undefined) {
+            const artistList = []
+            for (let counter2 = 0; counter2 < json['anime'][index]['animethemes'][counter]['song']['artists'].length; counter2++) {
+                artistList.push(json['anime'][index]['animethemes'][counter]['song']['artists'][counter2]['name'])
+            }
+            themeJson['artists'] = artistList
+        }
+        else {
+            themeJson['artists'] = undefined
+        }
         
         parsedAnimeThemes.push(themeJson)
     }
