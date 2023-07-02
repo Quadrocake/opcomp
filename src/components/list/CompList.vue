@@ -1,7 +1,7 @@
 <template>
 	<div class="complist">
 		<input type="text" v-model="listName" placeholder="List name">
-		<div class="compbutton">
+		<div v-bind:class="{fetchOkGreen: fetchOk}" class="compbutton">
 			<button @click="newList">New</button>
 			<button @click="uploadList">Upload</button>
 			<button @click="fetchCompList">Refresh</button>
@@ -34,7 +34,8 @@ export default {
 	components: { ConfirmDialogue },
 	data() {
 		return {
-			malJson: ""
+			malJson: "",
+			fetchOk: false
 		}
 	},
 	computed: {
@@ -68,6 +69,13 @@ export default {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(uploadData)
+			})
+			.then((response)=>{
+				if(response.status==200){
+					console.log('uploaded');
+					this.fetchOk = true
+					setTimeout(() => {  this.fetchOk = false }, 3000);
+				}
 			})
 		},
 		newList() {
@@ -146,6 +154,12 @@ export default {
 }
 .complist button {
   background: #2a2a2b;
+  height: 100%;
+  border: none;
+  /* max-height: 2em; */
+}
+.fetchOkGreen button{
+  background: #08ad3f;
   height: 100%;
   border: none;
   /* max-height: 2em; */
