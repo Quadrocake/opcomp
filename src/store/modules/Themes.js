@@ -51,9 +51,9 @@ const Themes = {
 					commit('updatePlayHistory', randomizedTheme)
 					commit('updateAnimeThemesList', parsedAnimeThemes)
 
-					const MAL_ANIME_REQUEST = Config.MAL_URL + randomizedTheme['malId'] + Config.MAL_FIELDS
+					const MAL_ANIME_REQUEST = Config.CORS_URL + Config.MAL_URL + randomizedTheme['malId'] + Config.MAL_FIELDS
 
-					fetch(MAL_ANIME_REQUEST, {headers: {"X-MAL-Client-ID": "6114d00ca681b7701d1e15fe11a4987e"}})
+					fetch(MAL_ANIME_REQUEST)
 					.then(response => response.json())
 					.then(json => {
 						const parsedMALAnime = parseMALJson(json)

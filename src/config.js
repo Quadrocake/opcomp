@@ -1,5 +1,8 @@
 const Config = {
 	BACKEND_URL: "https://op.727.pp.ua/api",
+	CORS_URL: "http://op.727.pp.ua/cors?url=",
+	//BACKEND_URL: "http://192.168.0.60:5000/api",
+	//CORS_URL: "http://192.168.0.60:5000/cors?url=",
 	BASE_RANDOM_ANIME_REQUEST: "https://api.animethemes.moe/anime?sort=random" + 
 		"&page[size]=1",
 	ANIME_FIELDS: "&fields[anime]=id,name,year" + 
