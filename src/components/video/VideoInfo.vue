@@ -8,6 +8,11 @@
 		<p class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['anime'] }}</p> &nbsp;
 		<p class="videoInfoLine" v-if="this.$store.state.Themes.video.themeObject['type']">{{ this.$store.state.Themes.video.themeObject['type'] }}</p> &nbsp;
 		<p class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['title'] }}</p> <br />
+		<div v-if="this.$store.state.Themes.video.themeObject['MAL']">
+			<p class="videoInfoLine">Score: {{ this.$store.state.Themes.video.themeObject['MAL']['mean'] }}</p> &nbsp;
+			<p class="videoInfoLine">Rank: {{ this.$store.state.Themes.video.themeObject['MAL']['rank'] }}</p> &nbsp;
+			<p class="videoInfoLine">Popularity: {{ this.$store.state.Themes.video.themeObject['MAL']['popularity'] }}</p> 
+		</div>
 		<div class="videoInfoLine" v-if="this.$store.state.Themes.video.themeObject['artists']">
 			<div class="videoInfoLine smallerFont">Artist: </div> 
 			<!-- <div class="videoInfoLine">{{ this.$store.state.Themes.video.themeObject['artists'] }}</div> -->

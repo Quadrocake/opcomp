@@ -1,5 +1,6 @@
 import Config from "../../config.js"
 import { parseAnimeJson } from "../../helpers"
+import { parseMALJson } from "../../helpers"
 import { filterAnimeThemesByType } from "../../helpers"
 
 const Themes = {
@@ -49,6 +50,15 @@ const Themes = {
 					dispatch('UPDATE_CURRENTLY_PLAYING', {theme: randomizedTheme})
 					commit('updatePlayHistory', randomizedTheme)
 					commit('updateAnimeThemesList', parsedAnimeThemes)
+
+					const MAL_ANIME_REQUEST = Config.MAL_URL + randomizedTheme['malId'] + Config.MAL_FIELDS
+
+					fetch(MAL_ANIME_REQUEST, {headers: {"X-MAL-Client-ID": "6114d00ca681b7701d1e15fe11a4987e"}})
+					.then(response => response.json())
+					.then(json => {
+						const parsedMALAnime = parseMALJson(json)
+						dispatch('UPDATE_MAL_INFO', parsedMALAnime)
+					})	
 				}
 				else {
 					setTimeout(() => { console.log("Wait before repeating request"); }, 2000)
@@ -63,6 +73,9 @@ const Themes = {
 			if(index !== undefined) {
 				commit('updateOpIndex', index)
 			}
+		},
+		UPDATE_MAL_INFO ({commit}, payload) {
+			commit('updateThemeObjectMAL', payload)
 		},
 		CHANGE_TYPE_FILTER ({ commit }, payload) {
 			commit('updateTypeFilter', payload.value)
@@ -94,6 +107,9 @@ const Themes = {
 		},
 		updateThemeObject (state, value) {
 			state.video.themeObject = value
+		},
+		updateThemeObjectMAL (state, value) {
+			state.video.themeObject['MAL'] = value
 		},
 		updateAnimeThemesList (state, value) {
 			state.animeThemesList = value

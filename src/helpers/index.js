@@ -22,10 +22,31 @@ export function parseAnimeJson (json, index) {
         else {
             themeJson['artists'] = undefined
         }
+        if (json['anime'][index]['resources'][0] != undefined) {
+            for (let counter3 = 0; counter3 < json['anime'][index]['resources'].length; counter3++) {
+                if (json['anime'][index]['resources'][counter3]['site'] == 'MyAnimeList') {
+                    themeJson['malId'] = json['anime'][index]['resources'][counter3]['external_id']
+                }
+            }
+        }
+        else {
+            themeJson['malId'] = undefined
+        }
         
         parsedAnimeThemes.push(themeJson)
     }
     return parsedAnimeThemes
+}
+export function parseMALJson (json) {
+    const MALObj = {}
+    MALObj['title'] = json['title']
+    MALObj['mean'] = json['mean']
+    MALObj['rank'] = json['rank']
+    MALObj['popularity'] = json['popularity']
+    MALObj['num_list_users'] = json['num_list_users']
+    MALObj['num_scoring_users'] = json['num_scoring_users']
+
+    return MALObj
 }
 export function parseYtJson (json) {
     const parsedYtSearch = []
