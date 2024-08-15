@@ -49,16 +49,7 @@ const Themes = {
 					commit('resetOpIndex')
 					dispatch('UPDATE_CURRENTLY_PLAYING', {theme: randomizedTheme})
 					commit('updatePlayHistory', randomizedTheme)
-					commit('updateAnimeThemesList', parsedAnimeThemes)
-
-					const MAL_ANIME_REQUEST = Config.CORS_URL + Config.MAL_URL + randomizedTheme['malId'] + Config.MAL_FIELDS
-
-					fetch(MAL_ANIME_REQUEST)
-					.then(response => response.json())
-					.then(json => {
-						const parsedMALAnime = parseMALJson(json)
-						dispatch('UPDATE_MAL_INFO', parsedMALAnime)
-					})	
+					commit('updateAnimeThemesList', parsedAnimeThemes)	
 				}
 				else {
 					setTimeout(() => { console.log("Wait before repeating request"); }, 2000)
@@ -67,11 +58,21 @@ const Themes = {
 			})
 			// console.log(getters.GET_FILTER_FIELDS)
 		},
-		UPDATE_CURRENTLY_PLAYING ({commit}, {theme, index}) {
+		UPDATE_CURRENTLY_PLAYING ({state, commit}, {theme, index}) {
 			commit('updateThemeObject', theme)
 			commit('updateVideoUrl', theme)
 			if(index !== undefined) {
 				commit('updateOpIndex', index)
+			}
+			if(state.video.themeObject['malId']) {
+				const MAL_ANIME_REQUEST = Config.CORS_URL + Config.MAL_URL + state.video.themeObject['malId'] + Config.MAL_FIELDS
+
+				fetch(MAL_ANIME_REQUEST)
+				.then(response => response.json())
+				.then(json => {
+					const parsedMALAnime = parseMALJson(json)
+					commit('updateThemeObjectMAL', parsedMALAnime)
+				})
 			}
 		},
 		UPDATE_MAL_INFO ({commit}, payload) {
