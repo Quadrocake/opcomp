@@ -7,8 +7,8 @@ const Config = {
 		"&page[size]=1",
 	ANIME_FIELDS: "&fields[anime]=id,name,year" + 
 		"&fields[video]=id,link" + 
-		"&fields[animetheme]=type,slug" + 
-		"&fields[animethemeentry]=spoiler" +
+		// "&fields[animetheme]=type,slug" + 
+		// "&fields[animethemeentry]=spoiler" +
 		"&fields[artist]=name",
 	RANDOM_INCLUDE: "&include=animethemes.song,animethemes.animethemeentries.videos,animethemes.song.artists,resources",
 	SEARCH_INCLUDE: "&include[anime]=animethemes.song,animethemes.animethemeentries.videos,animethemes.song.artists,resources",
@@ -19,4 +19,3 @@ const Config = {
 	MAL_FIELDS: "?fields=title,mean,rank,popularity,num_list_users,num_scoring_users"
 }
 export default Config
-  
