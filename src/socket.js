@@ -4,7 +4,7 @@ import { io } from "socket.io-client"
 //     reconnectionDelayMax: 10000,
 //   })
 
-const socket = io(`wss://op.727.pp.ua`, {
+const socket = io(`wss://op.confa.fun`, {
 	reconnectionDelayMax: 10000,
 })
 
